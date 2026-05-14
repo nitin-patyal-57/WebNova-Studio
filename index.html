@@ -133,7 +133,7 @@
         </div>
     </section>
 
-    <!-- Portfolio Section (Direct Link to New Tab) -->
+    <!-- Portfolio Section (Direct Link to New Tab with Image Preview) -->
     <section id="portfolio" class="py-32 px-8 bg-[#050312] overflow-hidden">
         <div class="max-w-7xl mx-auto">
             <div class="grid md:grid-cols-2 gap-20 items-center">
@@ -145,7 +145,7 @@
                         THE <br> <span class="text-indigo-500">MASTER</span> <br> PORTFOLIO.
                     </h2>
                     <p class="text-gray-400 text-lg mb-10 leading-relaxed max-w-md">
-                        Explore my full-scale production environment. This workspace demonstrates high-performance engineering and advanced UI logic.
+                        Explore my full-scale production environment. This workspace demonstrates high-performance engineering, advanced logic, and custom motion engines.
                     </p>
                     
                     <button onclick="launchToNewTab(this)" class="btn-shine group relative flex items-center gap-6 px-10 py-6 rounded-2xl font-black uppercase text-xs tracking-[0.3em] overflow-hidden">
@@ -155,28 +155,37 @@
                     </button>
 
                     <div class="mt-12 flex gap-10 items-center border-t border-white/5 pt-10">
-                        <div><div class="text-2xl font-bold h-premium">React</div><div class="text-[10px] text-gray-500 uppercase tracking-widest">Environment</div></div>
-                        <div><div class="text-2xl font-bold h-premium">Vercel</div><div class="text-[10px] text-gray-500 uppercase tracking-widest">Deployment</div></div>
+                        <div><div class="text-2xl font-bold h-premium text-white">React</div><div class="text-[10px] text-gray-500 uppercase tracking-widest">Core Library</div></div>
+                        <div><div class="text-2xl font-bold h-premium text-white">GSAP</div><div class="text-[10px] text-gray-500 uppercase tracking-widest">Motion Eng.</div></div>
                     </div>
                 </div>
 
                 <div class="relative reveal hidden md:block" style="transition-delay: 0.2s;">
                     <div class="glass-card p-3 rounded-[40px] border-white/10 group cursor-pointer" onclick="launchToNewTab()">
                         <div class="relative bg-[#030014] rounded-[32px] overflow-hidden border border-white/10 h-[500px] shadow-2xl">
+                            <!-- Browser Header -->
                             <div class="h-10 bg-white/5 flex items-center px-6 gap-2 border-b border-white/5">
                                 <div class="w-2.5 h-2.5 rounded-full bg-red-500/30"></div>
                                 <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/30"></div>
                                 <div class="w-2.5 h-2.5 rounded-full bg-green-500/30"></div>
+                                <div class="ml-4 text-[9px] text-gray-500 font-mono">portfolio.nitinpatyal.dev</div>
                             </div>
-                            <div class="absolute inset-0 top-10 flex flex-col items-center justify-center p-12 text-center">
-                                <div class="w-20 h-20 bg-indigo-500/10 rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                    <i class="fa-solid fa-code text-3xl text-indigo-500"></i>
+                            <!-- Actual Portfolio Image Background -->
+                            <div class="absolute inset-0 top-10 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" 
+                                 style="background-image: url('https://images.unsplash.com/photo-1550439062-609e1531270e?q=80&w=1000');">
+                                 <!-- Dark Gradient Overlay for Professional Feel -->
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#030014] via-[#030014]/40 to-transparent"></div>
+                            </div>
+                            <!-- Content Overlay -->
+                            <div class="absolute inset-0 top-10 flex flex-col items-center justify-center p-12 text-center pointer-events-none">
+                                <div class="w-20 h-20 bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl flex items-center justify-center mb-6">
+                                    <i class="fa-solid fa-code text-3xl text-white"></i>
                                 </div>
-                                <h4 class="text-2xl font-bold h-premium mb-4 opacity-50 uppercase">Production Server</h4>
-                                <p class="text-[10px] text-gray-600 uppercase tracking-widest font-bold font-mono">portfolio.nitinpatyal.dev</p>
+                                <h4 class="text-2xl font-bold h-premium mb-4 uppercase text-white tracking-tighter">Production Build v2.4</h4>
+                                <div class="bg-indigo-600 px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest text-white animate-pulse">Establishing Connection...</div>
                             </div>
                             <div class="absolute inset-0 bg-indigo-600/0 group-hover:bg-indigo-600/10 transition-colors flex items-center justify-center">
-                                <div class="opacity-0 group-hover:opacity-100 transition-opacity bg-white text-black px-6 py-3 rounded-full font-black text-[10px] uppercase tracking-widest">Open in New Tab</div>
+                                <div class="opacity-0 group-hover:opacity-100 transition-opacity bg-white text-black px-6 py-3 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl">View Live Environment</div>
                             </div>
                         </div>
                     </div>
