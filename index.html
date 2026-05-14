@@ -211,7 +211,8 @@
                             <div class="w-2 h-2 rounded-full bg-yellow-500/50"></div>
                             <div class="w-2 h-2 rounded-full bg-green-500/50"></div>
                         </div>
-                        <div id="demo-viewport" class="p-8 h-full transition-all duration-500 overflow-y-auto"></div>
+                        <!-- Container for dynamic front page image -->
+                        <div id="demo-viewport" class="h-full w-full transition-all duration-500 overflow-hidden"></div>
                     </div>
                 </div>
 
@@ -320,11 +321,41 @@
         let currentCategory = 'gym';
 
         const demoData = {
-            gym: { title: "IronFit Blueprint", desc: "Aggressive dark mode for gyms. Membership focus.", features: ["Schedules", "WA Booking"], accent: "#ef4444" },
-            restaurant: { title: "Royal Dining", desc: "Hunger-triggering layout. Digital menu cards.", features: ["Digital Menu", "Reservations"], accent: "#f59e0b" },
-            salon: { title: "GlowNest Studio", desc: "Elegant aesthetics. Portfolio & appointments.", features: ["Portfolio", "Instant Booking"], accent: "#ec4899" },
-            coaching: { title: "BrightPath Academy", desc: "Clean & professional. Course enrollment focus.", features: ["Result Gallery", "Lead Forms"], accent: "#3b82f6" },
-            cafe: { title: "Coffee Social", desc: "Trendy, cozy vibes. Instagram integration.", features: ["QR Menus", "Social Feed"], accent: "#10b981" }
+            gym: { 
+                title: "IronFit Blueprint", 
+                desc: "Aggressive dark mode for gyms. Membership focus.", 
+                features: ["Schedules", "WA Booking"], 
+                accent: "#ef4444",
+                img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1000"
+            },
+            restaurant: { 
+                title: "Royal Dining", 
+                desc: "Hunger-triggering layout. Digital menu cards.", 
+                features: ["Digital Menu", "Reservations"], 
+                accent: "#f59e0b",
+                img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1000"
+            },
+            salon: { 
+                title: "GlowNest Studio", 
+                desc: "Elegant aesthetics. Portfolio & appointments.", 
+                features: ["Portfolio", "Instant Booking"], 
+                accent: "#ec4899",
+                img: "https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1000"
+            },
+            coaching: { 
+                title: "BrightPath Academy", 
+                desc: "Clean & professional. Course enrollment focus.", 
+                features: ["Result Gallery", "Lead Forms"], 
+                accent: "#3b82f6",
+                img: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000"
+            },
+            cafe: { 
+                title: "Coffee Social", 
+                desc: "Trendy, cozy vibes. Instagram integration.", 
+                features: ["QR Menus", "Social Feed"], 
+                accent: "#10b981",
+                img: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000"
+            }
         };
 
         function filterDemo(category) {
@@ -336,8 +367,32 @@
             document.getElementById('demo-title').innerText = data.title;
             document.getElementById('demo-desc').innerText = data.desc;
             document.getElementById('view-demo-link').innerText = `View Live ${category.charAt(0).toUpperCase() + category.slice(1)} Demo`;
-            document.getElementById('demo-features').innerHTML = data.features.map(f => `<li class="flex items-center gap-3 text-sm font-semibold text-gray-300"><i class="fa-solid fa-circle-check" style="color: ${data.accent}"></i> ${f}</li>`).join('');
-            document.getElementById('demo-viewport').innerHTML = `<div class="space-y-6"><div class="h-4 w-20 rounded" style="background: ${data.accent}33"></div><div class="h-12 w-full bg-white/10 rounded-xl"></div><div class="grid grid-cols-2 gap-4"><div class="h-40 bg-white/5 rounded-2xl flex items-center justify-center"><i class="fa-solid fa-image text-white/10 text-4xl"></i></div><div class="h-40 bg-white/5 rounded-2xl flex items-center justify-center"><i class="fa-solid fa-image text-white/10 text-4xl"></i></div></div></div>`;
+            
+            // Update Features list
+            document.getElementById('demo-features').innerHTML = data.features.map(f => `
+                <li class="flex items-center gap-3 text-sm font-semibold text-gray-300">
+                    <i class="fa-solid fa-circle-check" style="color: ${data.accent}"></i> ${f}
+                </li>
+            `).join('');
+
+            // Injected Image Box with Hover Scale effect
+            document.getElementById('demo-viewport').innerHTML = `
+                <div class="relative h-full w-full group overflow-hidden rounded-xl">
+                    <div class="absolute top-0 left-0 w-full h-full bg-cover bg-center transition-transform duration-1000 group-hover:scale-110" 
+                         style="background-image: url('${data.img}');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    </div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <div class="h-1 w-12 rounded mb-3" style="background: ${data.accent}"></div>
+                        <div class="text-white font-bold text-xl h-premium uppercase tracking-tighter shadow-lg">${data.title}</div>
+                        <div class="text-white/60 text-[9px] font-bold uppercase tracking-widest mt-1">Architecture Preview v1.0</div>
+                    </div>
+                    <div class="absolute top-4 right-4 bg-white/10 backdrop-blur-md border border-white/20 px-3 py-1 rounded-full flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background: ${data.accent}"></span>
+                        <span class="text-[8px] font-black uppercase text-white tracking-widest">Active</span>
+                    </div>
+                </div>
+            `;
         }
 
         function openDemoPage() { window.open(`${currentCategory}.html`, '_blank'); }
