@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRON REVOLUTION | Elite Performance & Recovery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --gym-red: #ff0000;
+            --gym-dark: #050505;
+            --gym-gray: #1a1a1a;
+            --accent-glow: rgba(255, 0, 0, 0.2);
+        }
+
+        * {
+            scroll-behavior: smooth;
+            selection-background: var(--gym-red);
+            selection-color: #fff;
+        }
+
+        body {
+            background-color: var(--gym-dark);
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .h-gym { font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; letter-spacing: -0.05em; }
+
+        /* Kinetic Typography Scroller */
+        .marquee {
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .glass-card:hover {
+            background: rgba(255, 0, 0, 0.05);
+            border-color: var(--gym-red);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 20px var(--accent-glow);
+        }
+
+        /* Hero Image Masking */
+        .hero-bg {
+            background: linear-gradient(rgba(5,5,5,0.9), rgba(5,5,5,0.4)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 1s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Pricing Toggle */
+        .toggle-dot {
+            transition: all 0.3s ease;
+        }
+        input:checked ~ .toggle-dot {
+            transform: translateX(100%);
+            background-color: var(--gym-red);
+        }
+
+        /* Trainer Image Filter */
+        .trainer-img {
+            filter: grayscale(1) contrast(1.2);
+            transition: all 0.5s ease;
+        }
+        .trainer-card:hover .trainer-img {
+            filter: grayscale(0) contrast(1);
+            transform: scale(1.1);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--gym-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--gym-red); }
+
+        /* Diagonal Section Decor */
+        .diagonal-line {
+            width: 200%;
+            height: 100px;
+            background: var(--gym-red);
+            transform: rotate(-3deg);
+            position: absolute;
+            left: -50%;
+            z-index: 0;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP PREVIEW BAR -->
+    <div class="fixed top-0 w-full z-[200] bg-red-700 text-white py-2 text-center text-[10px] font-black uppercase tracking-[0.4em]">
+        Elite Architecture Blueprint &bull; <a href="index.html" class="underline">Return to WebNova</a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-10 w-full z-[100] px-8 h-20 flex items-center justify-between bg-black/50 backdrop-blur-xl border-b border-white/5">
+        <div class="flex items-center gap-3">
+            <div class="bg-red-600 p-2 transform -skew-x-12">
+                <i class="fas fa-dumbbell text-white"></i>
+            </div>
+            <div class="h-gym text-2xl font-black italic tracking-tighter">IRON<span class="text-red-600">REV</span></div>
+        </div>
+        
+        <div class="hidden md:flex gap-10 text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">
+            <a href="#hero" class="hover:text-red-600 transition">Intro</a>
+            <a href="#facility" class="hover:text-red-600 transition">Facility</a>
+            <a href="#trainers" class="hover:text-red-600 transition">Coaching</a>
+            <a href="#pricing" class="hover:text-red-600 transition">Memberships</a>
+            <a href="#recovery" class="hover:text-red-600 transition">Recovery</a>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <a href="https://wa.me/910000000000" class="hidden sm:block bg-red-600 px-6 py-2.5 rounded-sm h-gym text-[10px] font-bold uppercase tracking-widest hover:bg-red-700 transition shadow-[0_0_20px_rgba(255,0,0,0.3)]">Get VIP Access</a>
+            <button class="text-white text-2xl md:hidden"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative h-screen flex items-center justify-center hero-bg overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+        
+        <div class="relative z-10 text-center px-6">
+            <div class="reveal">
+                <span class="inline-block px-4 py-1 border border-red-600/30 bg-red-600/10 text-red-500 text-[10px] font-black uppercase tracking-[0.5em] mb-8">
+                    Ludhiana's Most Advanced Lab
+                </span>
+                <h1 class="h-gym text-6xl md:text-[160px] font-black leading-[0.85] mb-8">
+                    Forge <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-900">Your Legacy.</span>
+                </h1>
+                <p class="max-w-2xl mx-auto text-gray-400 text-lg md:text-xl mb-12 font-medium">
+                    We don't sell memberships. We architect elite human performance through data-driven training and science-backed recovery.
+                </p>
+                
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+                    <a href="https://wa.me/910000000000" class="bg-red-600 px-12 py-5 h-gym text-xs font-black uppercase tracking-widest hover:scale-105 transition-all shadow-[0_0_50px_rgba(255,0,0,0.4)]">
+                        Initialize Transformation
+                    </a>
+                    <a href="#facility" class="flex items-center gap-3 h-gym text-[10px] font-black uppercase tracking-widest hover:text-red-500 transition">
+                        View Facility <i class="fas fa-arrow-right-long"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vertical Indicators -->
+        <div class="absolute right-10 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-10 items-center">
+            <div class="w-[1px] h-20 bg-white/10"></div>
+            <div class="rotate-90 h-gym text-[10px] font-bold text-gray-600 tracking-widest uppercase">EST.MMXXIV</div>
+            <div class="w-[1px] h-20 bg-white/10"></div>
+        </div>
+    </section>
+
+    <!-- Marquee Kinetic Typography -->
+    <div class="bg-red-600 py-6 overflow-hidden border-y border-red-500">
+        <div class="marquee h-gym text-4xl font-black text-white italic">
+            LIMITLESS POWER &bull; ELITE COACHING &bull; RECOVERY HUB &bull; SCIENTIFIC TRAINING &bull; 24/7 ACCESS &bull; LIMITLESS POWER &bull; ELITE COACHING &bull; RECOVERY HUB &bull; SCIENTIFIC TRAINING &bull; 24/7 ACCESS &bull; 
+        </div>
+    </div>
+
+    <!-- Facility Architecture -->
+    <section id="facility" class="py-32 px-8 relative overflow-hidden">
+        <div class="diagonal-line" style="top: 20%;"></div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid md:grid-cols-2 gap-20 items-center">
+                <div class="reveal">
+                    <h2 class="h-gym text-5xl md:text-7xl mb-8 uppercase">The <br> <span class="text-red-600">Architecture</span> <br> of Iron.</h2>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-10 italic">
+                        "A training floor designed by athletes, for athletes. Every piece of equipment is selected for biomechanical perfection."
+                    </p>
+                    
+                    <div class="space-y-8">
+                        <div class="flex gap-6 group">
+                            <div class="w-16 h-16 rounded-lg bg-red-600/10 border border-red-600/20 flex items-center justify-center text-red-600 transition group-hover:bg-red-600 group-hover:text-white">
+                                <i class="fas fa-bolt text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="h-gym text-xl mb-2">Hammer Strength® Certified</h4>
+                                <p class="text-gray-500 text-sm">Official training center featuring the world's most elite strength equipment.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 group">
+                            <div class="w-16 h-16 rounded-lg bg-red-600/10 border border-red-600/20 flex items-center justify-center text-red-600 transition group-hover:bg-red-600 group-hover:text-white">
+                                <i class="fas fa-heart-pulse text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="h-gym text-xl mb-2">Biometric Tracking</h4>
+                                <p class="text-gray-500 text-sm">Real-time heart rate and performance monitoring integrated with our mobile app.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 reveal" style="transition-delay: 0.2s;">
+                    <div class="space-y-4">
+                        <div class="glass-card h-80 rounded-2xl overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1000" class="w-full h-full object-cover trainer-img">
+                        </div>
+                        <div class="glass-card p-8 rounded-2xl text-center">
+                            <div class="text-4xl font-black h-gym accent-red">15k</div>
+                            <div class="text-[9px] uppercase font-bold tracking-widest text-gray-500">Sq. Ft. Arena</div>
+                        </div>
+                    </div>
+                    <div class="space-y-4 pt-12">
+                        <div class="glass-card p-8 rounded-2xl text-center">
+                            <div class="text-4xl font-black h-gym accent-red">24/7</div>
+                            <div class="text-[9px] uppercase font-bold tracking-widest text-gray-500">Secure Access</div>
+                        </div>
+                        <div class="glass-card h-80 rounded-2xl overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=1000" class="w-full h-full object-cover trainer-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coaching & Trainers -->
+    <section id="trainers" class="py-32 bg-[#050505] px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-24 reveal">
+                <span class="text-red-600 font-bold uppercase text-[10px] tracking-[0.5em] mb-4 block">Human Architecture</span>
+                <h2 class="h-gym text-5xl md:text-7xl uppercase">Elite <span class="text-red-600">Coaching</span> Staff</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Trainer 1 -->
+                <div class="glass-card rounded-[40px] p-4 trainer-card reveal">
+                    <div class="relative h-[450px] rounded-[32px] overflow-hidden mb-8">
+                        <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&w=1000" class="w-full h-full object-cover trainer-img">
+                        <div class="absolute bottom-6 left-6 flex gap-2">
+                            <div class="bg-red-600 text-white p-2 rounded"><i class="fab fa-instagram"></i></div>
+                            <div class="bg-black/50 backdrop-blur-md text-white p-2 rounded"><i class="fab fa-linkedin-in"></i></div>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-6">
+                        <h4 class="h-gym text-2xl mb-1 uppercase italic">Vikram Singh</h4>
+                        <p class="text-red-600 font-bold text-[10px] uppercase tracking-widest mb-4">Strength & Conditioning Head</p>
+                        <p class="text-gray-500 text-xs leading-relaxed">Ex-National Weightlifter. Specializing in explosive power and compound movement mastery.</p>
+                    </div>
+                </div>
+
+                <!-- Trainer 2 -->
+                <div class="glass-card rounded-[40px] p-4 trainer-card reveal" style="transition-delay: 0.1s;">
+                    <div class="relative h-[450px] rounded-[32px] overflow-hidden mb-8">
+                        <img src="https://images.unsplash.com/photo-1548690312-e3b507d17a47?q=80&w=1000" class="w-full h-full object-cover trainer-img">
+                        <div class="absolute bottom-6 left-6 flex gap-2">
+                            <div class="bg-red-600 text-white p-2 rounded"><i class="fab fa-instagram"></i></div>
+                            <div class="bg-black/50 backdrop-blur-md text-white p-2 rounded"><i class="fab fa-linkedin-in"></i></div>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-6">
+                        <h4 class="h-gym text-2xl mb-1 uppercase italic">Arjun Khanna</h4>
+                        <p class="text-red-600 font-bold text-[10px] uppercase tracking-widest mb-4">Physique Architecture</p>
+                        <p class="text-gray-500 text-xs leading-relaxed">IFBB Pro Certified. Helping clients achieve the impossible through metabolic optimization.</p>
+                    </div>
+                </div>
+
+                <!-- Trainer 3 -->
+                <div class="glass-card rounded-[40px] p-4 trainer-card reveal" style="transition-delay: 0.2s;">
+                    <div class="relative h-[450px] rounded-[32px] overflow-hidden mb-8">
+                        <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=1000" class="w-full h-full object-cover trainer-img">
+                        <div class="absolute bottom-6 left-6 flex gap-2">
+                            <div class="bg-red-600 text-white p-2 rounded"><i class="fab fa-instagram"></i></div>
+                            <div class="bg-black/50 backdrop-blur-md text-white p-2 rounded"><i class="fab fa-linkedin-in"></i></div>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-6">
+                        <h4 class="h-gym text-2xl mb-1 uppercase italic">Rahul Sharma</h4>
+                        <p class="text-red-600 font-bold text-[10px] uppercase tracking-widest mb-4">MMA & Functional Expert</p>
+                        <p class="text-gray-500 text-xs leading-relaxed">BJJ Blue Belt. Expert in mobility, high-intensity cardio, and combat-ready fitness.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Memberships Section -->
+    <section id="pricing" class="py-32 px-8 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 reveal">
+                <h2 class="h-gym text-5xl md:text-7xl mb-8 uppercase">Investment <br> <span class="text-red-600">Packages.</span></h2>
+                
+                <!-- Toggle -->
+                <div class="flex items-center justify-center gap-6">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400">Monthly</span>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="sr-only" onchange="togglePricing()">
+                        <div class="w-14 h-7 bg-white/10 rounded-full border border-white/10"></div>
+                        <div class="toggle-dot absolute left-1 top-1 w-5 h-5 bg-white rounded-full"></div>
+                    </label>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-red-500">Yearly (Save 30%)</span>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Plan 1 -->
+                <div class="glass-card p-12 rounded-[40px] reveal">
+                    <h3 class="h-gym text-3xl mb-4">Base</h3>
+                    <div class="text-5xl font-black mb-8 h-gym italic"><span class="price-val" data-monthly="1500" data-yearly="12000">₹1,500</span></div>
+                    <ul class="space-y-6 mb-12">
+                        <li class="flex items-center gap-4 text-sm text-gray-400">
+                            <i class="fas fa-check-circle text-red-600"></i> Full Gym Floor Access
+                        </li>
+                        <li class="flex items-center gap-4 text-sm text-gray-400">
+                            <i class="fas fa-check-circle text-red-600"></i> Basic Mobile App
+                        </li>
+                        <li class="flex items-center gap-4 text-sm text-gray-700">
+                            <i class="fas fa-times-circle"></i> Weekly Coaching
+                        </li>
+                    </ul>
+                    <button class="w-full py-5 rounded-xl border border-white/10 h-gym text-xs font-black uppercase tracking-widest hover:bg-white/5 transition">Join Base</button>
+                </div>
+
+                <!-- Plan 2 -->
+                <div class="glass-card p-12 rounded-[40px] border-red-600 bg-red-600/5 relative reveal shadow-[0_0_80px_rgba(255,0,0,0.1)]" style="transition-delay: 0.1s;">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-red-600 px-6 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest">Recommended</div>
+                    <h3 class="h-gym text-3xl mb-4 text-red-600">Elite</h3>
+                    <div class="text-5xl font-black mb-8 h-gym italic"><span class="price-val" data-monthly="3500" data-yearly="32000">₹3,500</span></div>
+                    <ul class="space-y-6 mb-12">
+                        <li class="flex items-center gap-4 text-sm text-gray-200">
+                            <i class="fas fa-check-circle text-red-600"></i> All Base Features
+                        </li>
+                        <li class="flex items-center gap-4 text-sm text-gray-200">
+                            <i class="fas fa-check-circle text-red-600"></i> Weekly Diet Protocol
+                        </li>
+                        <li class="flex items-center gap-4 text-sm text-gray-200">
+                            <i class="fas fa-check-circle text-red-600"></i> Recovery Zone Access
+                        </li>
+                    </ul>
+                    <button class="w-full py-5 rounded-xl bg-red-600 h-gym text-xs font-black uppercase tracking-widest hover:bg-red-700 transition shadow-[0_0_40px_rgba(255,0,0,0.3)]">Elevate Now</button>
+                </div>
+
+                <!-- Plan 3 -->
+                <div class="glass-card p-12 rounded-[40px] reveal" style="transition-delay: 0.2s;">
+                    <h3 class="h-gym text-3xl mb-4">Pro</h3>
+                    <div class="text-5xl font-black mb-8 h-gym italic"><span class="price-val" data-monthly="7500" data-yearly="75000">₹7,500</span></div>
+                    <ul class="space-y-6 mb-12">
+                        <li class="flex items-center gap-4 text-sm text-gray-400">
+                            <i class="fas fa-check-circle text-red-600"></i> Elite Personal Trainer
+                        </li>
+                        <li class="flex items-center gap-4 text-sm text-gray-400">
+                            <i class="fas fa-check-circle text-red-600"></i> Bi-Weekly Body Scans
+                        </li>
+                        <li class="flex items-center gap-4 text-sm text-gray-400">
+                            <i class="fas fa-check-circle text-red-600"></i> Private VIP Locker
+                        </li>
+                    </ul>
+                    <button class="w-full py-5 rounded-xl border border-white/10 h-gym text-xs font-black uppercase tracking-widest hover:bg-white/5 transition">Apply for Pro</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recovery Zone -->
+    <section id="recovery" class="py-32 bg-white text-black px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-20 items-center">
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1544124499-58912cbddada?q=80&w=1000" class="rounded-[40px] shadow-2xl">
+                </div>
+                <div class="reveal">
+                    <span class="text-red-600 font-black uppercase text-[10px] tracking-[0.4em] mb-6 block">02 &bull; Bio-Recovery</span>
+                    <h2 class="h-gym text-5xl md:text-7xl mb-10 leading-tight">Sleep Is For <br> <span class="italic underline">Winners.</span></h2>
+                    <p class="text-gray-600 text-lg mb-12 leading-relaxed">
+                        Performance is 50% training and 50% recovery. Our Bio-Lab features Cryotherapy, Infrared Saunas, and Compression Therapy to ensure you're ready for the next war.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <h5 class="h-gym text-lg mb-2">Cryo Chamber</h5>
+                            <p class="text-xs text-gray-500">-110°C environment to eliminate inflammation instantly.</p>
+                        </div>
+                        <div>
+                            <h5 class="h-gym text-lg mb-2">Infrared Sauna</h5>
+                            <p class="text-xs text-gray-500">Deep tissue thermal therapy for cellular repair.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="results" class="py-40 bg-black px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-24 reveal">
+                <h2 class="h-gym text-5xl md:text-7xl mb-8 uppercase">The <span class="text-red-600">Proof</span></h2>
+                <p class="text-gray-500 italic max-w-xl mx-auto text-lg">"We don't sell hope. We deliver tangible, undeniable physiological shifts."</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="glass-card p-10 rounded-[40px] reveal">
+                    <div class="flex text-yellow-500 mb-6 gap-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-xl italic text-gray-300 leading-relaxed mb-10">"The atmosphere is electric. I've been to many gyms in Punjab, but the level of scientific training here is unparalleled. Lost 12kg in 3 months with zero injury."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 bg-red-600 rounded-full flex items-center justify-center h-gym text-xl font-bold">AS</div>
+                        <div>
+                            <h5 class="h-gym text-lg">Amit Sharma</h5>
+                            <p class="text-[9px] text-gray-600 uppercase font-black tracking-widest">Business Owner &bull; Member for 8 Mo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-10 rounded-[40px] reveal" style="transition-delay: 0.1s;">
+                    <div class="flex text-yellow-500 mb-6 gap-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-xl italic text-gray-300 leading-relaxed mb-10">"As a professional athlete, I need specific recovery tools. The Cryo chamber and the sports massage therapists at IronRev are world-class."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 bg-red-600 rounded-full flex items-center justify-center h-gym text-xl font-bold">RK</div>
+                        <div>
+                            <h5 class="h-gym text-lg">Rohan Kapoor</h5>
+                            <p class="text-[9px] text-gray-600 uppercase font-black tracking-widest">National Swimmer &bull; Member for 1 Yr.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ & Final CTA -->
+    <section class="py-32 bg-[#050505] px-8">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="h-gym text-4xl text-center mb-16">Frequently Asked</h2>
+            <div class="space-y-6">
+                <details class="group glass-card p-8 rounded-3xl reveal">
+                    <summary class="list-none cursor-pointer h-gym text-lg flex justify-between items-center uppercase">
+                        Do I need a personal trainer?
+                        <i class="fas fa-plus group-open:rotate-45 transition duration-300 text-red-600"></i>
+                    </summary>
+                    <div class="mt-6 text-gray-500 text-sm leading-relaxed border-t border-white/5 pt-6">
+                        While our floor staff is always available for safety, we highly recommend a Personal Architect for the first 90 days if you have specific body composition goals.
+                    </div>
+                </details>
+
+                <details class="group glass-card p-8 rounded-3xl reveal">
+                    <summary class="list-none cursor-pointer h-gym text-lg flex justify-between items-center uppercase">
+                        What is the recovery zone?
+                        <i class="fas fa-plus group-open:rotate-45 transition duration-300 text-red-600"></i>
+                    </summary>
+                    <div class="mt-6 text-gray-500 text-sm leading-relaxed border-t border-white/5 pt-6">
+                        It's a dedicated 2,000 sq.ft wing featuring clinical-grade recovery equipment including Cryotherapy, Infrared saunas, and Hydro-massage beds.
+                    </div>
+                </details>
+            </div>
+
+            <!-- Final CTA -->
+            <div class="mt-40 text-center reveal">
+                <h2 class="h-gym text-5xl md:text-8xl mb-12">Join The <br> <span class="text-red-600 italic">Revolution.</span></h2>
+                <p class="text-gray-500 mb-12 uppercase tracking-[0.4em] font-black text-xs">Applications Open for June 2026 Batch</p>
+                <a href="https://wa.me/910000000000" class="bg-red-600 px-16 py-6 h-gym text-sm font-black uppercase tracking-[0.2em] shadow-[0_0_80px_rgba(255,0,0,0.4)]">Initialize Application</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Footer -->
+    <footer class="py-24 bg-black border-t border-white/5 px-8">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-16 mb-20">
+            <div class="col-span-1 md:col-span-1">
+                <div class="h-gym text-3xl font-black italic mb-8">IRON<span class="text-red-600">REV</span></div>
+                <p class="text-gray-500 text-xs leading-relaxed uppercase tracking-widest font-bold mb-8">Engineering Elite Humans &bull; Built in Punjab &bull; Serving India</p>
+                <div class="flex gap-6 text-white">
+                    <a href="#" class="w-10 h-10 border border-white/10 flex items-center justify-center rounded hover:bg-red-600 hover:border-red-600 transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 border border-white/10 flex items-center justify-center rounded hover:bg-red-600 hover:border-red-600 transition"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="w-10 h-10 border border-white/10 flex items-center justify-center rounded hover:bg-red-600 hover:border-red-600 transition"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h5 class="h-gym text-xs text-red-600 tracking-widest mb-10 font-black">Architecture</h5>
+                <ul class="space-y-4 text-[10px] font-bold text-gray-500 uppercase tracking-widest">
+                    <li><a href="#facility" class="hover:text-white transition">The Floor</a></li>
+                    <li><a href="#recovery" class="hover:text-white transition">The Lab</a></li>
+                    <li><a href="#trainers" class="hover:text-white transition">Elite Coaching</a></li>
+                    <li><a href="index.html" class="hover:text-white transition">WebNova Agency</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="h-gym text-xs text-red-600 tracking-widest mb-10 font-black">Support</h5>
+                <ul class="space-y-4 text-[10px] font-bold text-gray-500 uppercase tracking-widest">
+                    <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                    <li><a href="#" class="hover:text-white transition">Terms & Privacy</a></li>
+                    <li><a href="#" class="hover:text-white transition">Guest Pass</a></li>
+                    <li><a href="https://wa.me/910000000000" class="hover:text-white transition">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="h-gym text-xs text-red-600 tracking-widest mb-10 font-black">Location</h5>
+                <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest leading-loose">
+                    Phase 1, Sarabha Nagar,<br>
+                    Ludhiana, Punjab 141001<br><br>
+                    +91 98765 43210<br>
+                    hq@ironrevolution.in
+                </p>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-12 border-t border-white/5 flex flex-col md:row justify-between items-center text-[9px] font-black uppercase tracking-[0.4em] text-gray-600 gap-6">
+            <div>&copy; 2026 IRON REVOLUTION &bull; ALL RIGHTS RESERVED</div>
+            <div>DEVELOPED BY WEBNOVA STUDIO &bull; ARCHITECTING PERFORMANCE</div>
+        </div>
+    </footer>
+
+    <!-- Back to Agency Bottom Floating CTA -->
+    <div class="fixed bottom-8 left-8 z-[150]">
+        <a href="index.html" class="bg-red-600/90 backdrop-blur-md px-6 py-4 rounded-sm flex items-center gap-4 hover:bg-white hover:text-red-600 transition-all shadow-2xl group border border-red-600">
+            <span class="text-[9px] font-black uppercase tracking-widest">Hire Architect</span>
+            <div class="w-8 h-8 bg-black rounded-full flex items-center justify-center text-white group-hover:bg-red-600 transition">
+                <i class="fa-solid fa-code text-[10px]"></i>
+            </div>
+        </a>
+    </div>
+
+    <script>
+        // Smooth Reveal Logic
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 150) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.onload = reveal;
+
+        // Pricing Toggle Logic
+        let isYearly = false;
+        function togglePricing() {
+            isYearly = !isYearly;
+            const prices = document.querySelectorAll('.price-val');
+            prices.forEach(p => {
+                const val = isYearly ? p.getAttribute('data-yearly') : p.getAttribute('data-monthly');
+                p.innerText = `₹${parseInt(val).toLocaleString()}`;
+            });
+        }
+
+        // Custom Navbar Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('top-0');
+                nav.classList.remove('top-10');
+            } else {
+                nav.classList.add('top-10');
+                nav.classList.remove('top-0');
+            }
+        });
+    </script>
+</body>
+</html>

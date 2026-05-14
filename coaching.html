@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIGHTPATH ACADEMY | Engineering & Medical Leadership</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --edu-primary: #1e40af;
+            --edu-secondary: #3b82f6;
+            --edu-bg: #f8fafc;
+            --edu-dark: #0f172a;
+            --edu-accent: #f59e0b;
+        }
+
+        * { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--edu-bg);
+            color: var(--edu-dark);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .font-heading { font-family: 'Space Grotesk', sans-serif; }
+
+        /* Animation: Reveal on Scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Glassmorphism Accents */
+        .glass-header {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.85);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        /* Hero Wave Shape */
+        .hero-shape {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+
+        .hero-shape svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 80px;
+        }
+
+        .hero-shape .shape-fill {
+            fill: var(--edu-bg);
+        }
+
+        /* Custom Success Card Hover */
+        .success-card {
+            transition: all 0.4s ease;
+            border: 1px solid #e2e8f0;
+        }
+        .success-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(30, 64, 175, 0.15);
+            border-color: var(--edu-secondary);
+        }
+
+        /* Rank Badge */
+        .rank-badge {
+            background: linear-gradient(135deg, var(--edu-accent), #d97706);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        /* Sidebar Progress for Methodology */
+        .step-active {
+            border-left: 4px solid var(--edu-primary);
+            background: white;
+        }
+
+        /* Custom UI Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--edu-primary); border-radius: 10px; }
+
+        /* Floating Stats Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-anim { animation: float 4s ease-in-out infinite; }
+    </style>
+</head>
+<body>
+
+    <!-- PREVIEW BAR -->
+    <div class="fixed top-0 w-full z-[200] bg-blue-900 text-white py-2 text-center text-[10px] font-bold uppercase tracking-[0.4em]">
+        Academic Architecture Blueprint &bull; <a href="index.html" class="underline">Return to Agency</a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-8 w-full z-[100] glass-header h-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-8 w-full flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-blue-700 rounded-xl flex items-center justify-center text-white text-xl">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="font-heading text-xl font-bold uppercase tracking-tighter">
+                    Bright<span class="text-blue-700">Path</span> <span class="text-slate-400 font-light">Academy</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex gap-10 text-[11px] font-extrabold uppercase tracking-widest text-slate-500">
+                <a href="#results" class="hover:text-blue-700 transition">Hall of Fame</a>
+                <a href="#method" class="hover:text-blue-700 transition">Methodology</a>
+                <a href="#programs" class="hover:text-blue-700 transition">Programs</a>
+                <a href="#faculty" class="hover:text-blue-700 transition">Faculty</a>
+                <a href="#admission" class="text-blue-700 border-b-2 border-blue-700 pb-1">Admissions 2026</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="https://wa.me/910000000000" class="hidden md:block bg-blue-700 text-white px-8 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-blue-800 transition shadow-lg shadow-blue-200">
+                    Apply Now
+                </a>
+                <button class="text-slate-900 text-2xl lg:hidden"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-48 pb-32 px-8 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center relative z-10">
+            <div class="reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-[10px] font-black uppercase tracking-widest mb-8 border border-blue-100">
+                    <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+                    Admissions Open: Batch 2026-27
+                </div>
+                <h1 class="font-heading text-6xl md:text-[84px] font-bold leading-[0.95] mb-8 text-slate-900">
+                    Architecting <br> <span class="text-blue-700">Champions</span> of <br> Tomorrow.
+                </h1>
+                <p class="text-slate-500 text-lg md:text-xl mb-12 leading-relaxed max-w-lg">
+                    The highest selection ratio in Punjab for JEE & NEET. We don't just provide coaching; we provide a blueprint for academic excellence.
+                </p>
+                
+                <div class="flex flex-wrap gap-6">
+                    <a href="#admission" class="bg-blue-700 text-white px-10 py-5 rounded-2xl font-black uppercase text-xs tracking-[0.2em] shadow-2xl shadow-blue-200 hover:scale-105 transition">
+                        Join Demo Batch
+                    </a>
+                    <div class="flex items-center gap-4 border-l border-slate-200 pl-8">
+                        <div class="flex -space-x-3">
+                            <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-200"></div>
+                            <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-300"></div>
+                            <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-400"></div>
+                        </div>
+                        <div class="text-[10px] font-bold uppercase tracking-widest text-slate-400 leading-tight">
+                            Trusted by <br> <span class="text-slate-900">2,000+ Students</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Floating Hero Cards -->
+            <div class="relative reveal hidden lg:block">
+                <div class="bg-blue-50 w-full h-[500px] rounded-[60px] relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000" class="w-full h-full object-cover grayscale opacity-20">
+                </div>
+                <!-- Float Card 1 -->
+                <div class="absolute -top-10 -left-10 bg-white p-8 rounded-3xl shadow-2xl float-anim">
+                    <div class="text-4xl font-bold text-blue-700 font-heading">AIR 12</div>
+                    <div class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mt-2">JEE Advanced 2025</div>
+                </div>
+                <!-- Float Card 2 -->
+                <div class="absolute bottom-20 -right-10 bg-blue-700 p-8 rounded-3xl shadow-2xl float-anim" style="animation-delay: 1.5s;">
+                    <div class="text-4xl font-bold text-white font-heading">695/720</div>
+                    <div class="text-[10px] font-black uppercase tracking-[0.3em] text-blue-200 mt-2">NEET Score 2025</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-shape">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Stat Strip -->
+    <section class="bg-slate-900 py-16 text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-8 grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+            <div class="reveal">
+                <div class="text-4xl font-bold mb-2 text-blue-400">12+ Years</div>
+                <div class="text-[10px] uppercase font-bold tracking-[0.4em] opacity-40">Of Excellence</div>
+            </div>
+            <div class="reveal" style="transition-delay: 0.1s;">
+                <div class="text-4xl font-bold mb-2 text-blue-400">15+ PhDs</div>
+                <div class="text-[10px] uppercase font-bold tracking-[0.4em] opacity-40">Core Faculty</div>
+            </div>
+            <div class="reveal" style="transition-delay: 0.2s;">
+                <div class="text-4xl font-bold mb-2 text-blue-400">98%</div>
+                <div class="text-[10px] uppercase font-bold tracking-[0.4em] opacity-40">Board Results</div>
+            </div>
+            <div class="reveal" style="transition-delay: 0.3s;">
+                <div class="text-4xl font-bold mb-2 text-blue-400">1:20</div>
+                <div class="text-[10px] uppercase font-bold tracking-[0.4em] opacity-40">Batch Ratio</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wall of Fame -->
+    <section id="results" class="py-32 px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row justify-between items-end mb-24 reveal">
+                <div class="max-w-2xl">
+                    <span class="text-blue-700 font-bold uppercase text-[10px] tracking-[0.5em] mb-4 block">Proven Performance</span>
+                    <h2 class="font-heading text-5xl md:text-7xl font-bold text-slate-900 leading-none">The Hall of <br> <span class="text-blue-700 italic">Champions.</span></h2>
+                </div>
+                <div class="mt-8 lg:mt-0">
+                    <a href="#" class="text-xs font-black uppercase tracking-widest text-slate-400 border-b border-slate-200 pb-2 hover:text-blue-700 hover:border-blue-700 transition">View All Results 2025</a>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Ranker 1 -->
+                <div class="success-card bg-white p-8 rounded-[40px] text-center relative reveal">
+                    <div class="absolute top-6 right-6 rank-badge w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xs italic">#12</div>
+                    <div class="w-32 h-32 rounded-full bg-slate-100 mx-auto mb-8 border-4 border-white shadow-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=400" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-heading text-xl font-bold text-slate-900">Aryan Varma</h4>
+                    <p class="text-blue-700 font-bold text-[10px] uppercase tracking-widest mt-2">JEE Advanced &bull; AIR 452</p>
+                    <div class="mt-6 pt-6 border-t border-slate-50 text-[10px] font-bold text-slate-400 uppercase">Enrolled in <span class="text-slate-900">IIT Delhi</span></div>
+                </div>
+
+                <!-- Ranker 2 -->
+                <div class="success-card bg-white p-8 rounded-[40px] text-center relative reveal" style="transition-delay: 0.1s;">
+                    <div class="absolute top-6 right-6 rank-badge w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xs italic">695</div>
+                    <div class="w-32 h-32 rounded-full bg-slate-100 mx-auto mb-8 border-4 border-white shadow-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-heading text-xl font-bold text-slate-900">Ishita Roy</h4>
+                    <p class="text-blue-700 font-bold text-[10px] uppercase tracking-widest mt-2">NEET UG &bull; 695/720</p>
+                    <div class="mt-6 pt-6 border-t border-slate-50 text-[10px] font-bold text-slate-400 uppercase">Enrolled in <span class="text-slate-900">AIIMS Delhi</span></div>
+                </div>
+
+                <!-- Ranker 3 -->
+                <div class="success-card bg-white p-8 rounded-[40px] text-center relative reveal" style="transition-delay: 0.2s;">
+                    <div class="absolute top-6 right-6 rank-badge w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xs italic">99.9</div>
+                    <div class="w-32 h-32 rounded-full bg-slate-100 mx-auto mb-8 border-4 border-white shadow-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-heading text-xl font-bold text-slate-900">Kabir Singh</h4>
+                    <p class="text-blue-700 font-bold text-[10px] uppercase tracking-widest mt-2">JEE Mains &bull; 99.9 %ile</p>
+                    <div class="mt-6 pt-6 border-t border-slate-50 text-[10px] font-bold text-slate-400 uppercase">Enrolled in <span class="text-slate-900">NIT Jalandhar</span></div>
+                </div>
+
+                <!-- Ranker 4 -->
+                <div class="success-card bg-white p-8 rounded-[40px] text-center relative reveal" style="transition-delay: 0.3s;">
+                    <div class="absolute top-6 right-6 rank-badge w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xs italic">#112</div>
+                    <div class="w-32 h-32 rounded-full bg-slate-100 mx-auto mb-8 border-4 border-white shadow-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-heading text-xl font-bold text-slate-900">Mehak Preet</h4>
+                    <p class="text-blue-700 font-bold text-[10px] uppercase tracking-widest mt-2">NEET UG &bull; AIR 112</p>
+                    <div class="mt-6 pt-6 border-t border-slate-50 text-[10px] font-bold text-slate-400 uppercase">Enrolled in <span class="text-slate-900">MAMC Mumbai</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The 4-Step Methodology -->
+    <section id="method" class="py-32 px-8 bg-slate-100">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="reveal">
+                    <span class="text-blue-700 font-bold uppercase text-[10px] tracking-[0.5em] mb-4 block">Our DNA</span>
+                    <h2 class="font-heading text-5xl md:text-6xl font-bold mb-12">The Blueprint of <br> <span class="text-blue-700">Success.</span></h2>
+                    
+                    <div class="space-y-6">
+                        <div class="step-card step-active p-8 rounded-2xl shadow-sm cursor-pointer transition-all duration-500">
+                            <div class="flex gap-6">
+                                <div class="text-3xl font-black text-blue-700 opacity-20">01</div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2">Micro-Concept Mastery</h4>
+                                    <p class="text-slate-500 text-sm">We break down complex Physics & Math into 15-minute 'nugget' sessions for 100% clarity.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-card p-8 rounded-2xl border-l-4 border-transparent hover:bg-white transition-all duration-300">
+                            <div class="flex gap-6">
+                                <div class="text-3xl font-black text-slate-300">02</div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2">Adaptive Practice Sets</h4>
+                                    <p class="text-slate-500 text-sm">Daily problems that increase in difficulty based on your specific speed and accuracy.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-card p-8 rounded-2xl border-l-4 border-transparent hover:bg-white transition-all duration-300">
+                            <div class="flex gap-6">
+                                <div class="text-3xl font-black text-slate-300">03</div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2">Real-Time Simulation</h4>
+                                    <p class="text-slate-500 text-sm">Bi-weekly mock tests conducted in a strictly proctored environment mirroring the real exam.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal">
+                    <div class="bg-white p-12 rounded-[60px] shadow-2xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-blue-700 text-white px-8 py-2 font-bold text-[10px] uppercase tracking-widest rounded-bl-3xl">Active Batch</div>
+                        <h4 class="font-heading text-3xl font-bold mb-8">Performance Analytics</h4>
+                        <div class="space-y-8">
+                            <div>
+                                <div class="flex justify-between text-xs font-bold uppercase mb-2"><span>Syllabus Covered</span><span>85%</span></div>
+                                <div class="w-full h-2 bg-slate-100 rounded-full"><div class="w-[85%] h-full bg-blue-700 rounded-full"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-bold uppercase mb-2"><span>Avg. Rank Improvement</span><span>42%</span></div>
+                                <div class="w-full h-2 bg-slate-100 rounded-full"><div class="w-[42%] h-full bg-blue-400 rounded-full"></div></div>
+                            </div>
+                            <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100">
+                                <p class="text-blue-900 text-sm font-medium italic">"The personalized test analysis dashboard helped me identify my weak zones in Organic Chemistry instantly."</p>
+                                <p class="text-[10px] font-bold text-blue-700 uppercase mt-4">— Samrath Singh, JEE Adv Qualifier</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Faculty Dossiers -->
+    <section id="faculty" class="py-32 px-8 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-24 reveal">
+                <h2 class="font-heading text-5xl md:text-7xl font-bold">Led by <span class="text-blue-700">Experts.</span></h2>
+                <p class="text-slate-500 mt-6 max-w-xl mx-auto">Our faculty members aren't just teachers; they are mentors with decades of experience in the competitive landscape.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="reveal text-center group">
+                    <div class="h-[400px] rounded-[40px] overflow-hidden mb-8 border border-slate-100 grayscale group-hover:grayscale-0 transition duration-700 shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1000" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-heading text-2xl font-bold">Dr. V.K. Oberoi</h4>
+                    <p class="text-blue-700 font-bold text-xs uppercase tracking-widest mt-1">HOD Physics &bull; PhD (IIT-K)</p>
+                </div>
+                <div class="reveal text-center group" style="transition-delay: 0.1s;">
+                    <div class="h-[400px] rounded-[40px] overflow-hidden mb-8 border border-slate-100 grayscale group-hover:grayscale-0 transition duration-700 shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1000" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-heading text-2xl font-bold">Prof. Rajesh Gupta</h4>
+                    <p class="text-blue-700 font-bold text-xs uppercase tracking-widest mt-1">HOD Mathematics &bull; M.Tech (IIT-B)</p>
+                </div>
+                <div class="reveal text-center group" style="transition-delay: 0.2s;">
+                    <div class="h-[400px] rounded-[40px] overflow-hidden mb-8 border border-slate-100 grayscale group-hover:grayscale-0 transition duration-700 shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1544717297-fa95b9ee9623?q=80&w=1000" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-heading text-2xl font-bold">Dr. Sunita Sharma</h4>
+                    <p class="text-blue-700 font-bold text-xs uppercase tracking-widest mt-1">HOD Biology &bull; MD (AIIMS)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admission & Scholarship Form -->
+    <section id="admission" class="py-32 px-8 bg-blue-900 text-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="reveal">
+                    <h2 class="font-heading text-5xl md:text-7xl font-bold mb-8 uppercase leading-tight">Start Your <br> Journey <span class="text-blue-400">Today.</span></h2>
+                    <p class="text-blue-100 text-lg mb-12 italic opacity-80">"Early bird registration for the 2026 Batch is now open. Save up to 50% on tuition fees via our Scholarship Test."</p>
+                    
+                    <ul class="space-y-6">
+                        <li class="flex items-center gap-4">
+                            <div class="w-8 h-8 rounded-full bg-blue-400/20 flex items-center justify-center text-blue-400"><i class="fas fa-check"></i></div>
+                            <span class="font-bold text-sm uppercase tracking-widest">Scholarship Up to 100%</span>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <div class="w-8 h-8 rounded-full bg-blue-400/20 flex items-center justify-center text-blue-400"><i class="fas fa-check"></i></div>
+                            <span class="font-bold text-sm uppercase tracking-widest">Free Demo Classes for 1 Week</span>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <div class="w-8 h-8 rounded-full bg-blue-400/20 flex items-center justify-center text-blue-400"><i class="fas fa-check"></i></div>
+                            <span class="font-bold text-sm uppercase tracking-widest">Hostel Facility for Outside Students</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="reveal bg-white p-12 rounded-[50px] shadow-2xl text-slate-900">
+                    <h4 class="font-heading text-3xl font-bold mb-8">Enquiry Form</h4>
+                    <form id="applyForm" class="space-y-6">
+                        <div>
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Student Name</label>
+                            <input type="text" id="name" required class="w-full bg-slate-50 border border-slate-100 p-5 rounded-2xl outline-none focus:border-blue-700 transition font-bold text-sm">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Class</label>
+                                <select id="class" class="w-full bg-slate-50 border border-slate-100 p-5 rounded-2xl outline-none focus:border-blue-700 transition font-bold text-sm">
+                                    <option>10th Standard</option>
+                                    <option>11th Medical</option>
+                                    <option>11th Non-Med</option>
+                                    <option>12th/Dropper</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Phone</label>
+                                <input type="tel" id="phone" required class="w-full bg-slate-50 border border-slate-100 p-5 rounded-2xl outline-none focus:border-blue-700 transition font-bold text-sm">
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-700 text-white py-6 rounded-2xl font-black uppercase tracking-widest text-xs shadow-2xl shadow-blue-200">Book Free Counseling</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dynamic Footer -->
+    <footer class="py-24 bg-slate-50 border-t border-slate-100 px-8">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
+            <div class="col-span-1 lg:col-span-1">
+                <div class="font-heading text-2xl font-bold mb-8 uppercase tracking-tighter">Bright<span class="text-blue-700">Path</span></div>
+                <p class="text-slate-400 text-xs leading-relaxed font-bold uppercase tracking-widest mb-8">Architecting Excellence &bull; Empowering Dreams &bull; Ludhiana, Punjab</p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-blue-700 border border-slate-100 hover:bg-blue-700 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-blue-700 border border-slate-100 hover:bg-blue-700 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-blue-700 border border-slate-100 hover:bg-blue-700 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h5 class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-900 mb-10 border-l-4 border-blue-700 pl-4">Academics</h5>
+                <ul class="space-y-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                    <li><a href="#" class="hover:text-blue-700 transition">JEE Prep</a></li>
+                    <li><a href="#" class="hover:text-blue-700 transition">NEET Prep</a></li>
+                    <li><a href="#" class="hover:text-blue-700 transition">Foundation Batches</a></li>
+                    <li><a href="#" class="hover:text-blue-700 transition">Study Material</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-900 mb-10 border-l-4 border-blue-700 pl-4">Student Hub</h5>
+                <ul class="space-y-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                    <li><a href="#" class="hover:text-blue-700 transition">Result Checker</a></li>
+                    <li><a href="#" class="hover:text-blue-700 transition">Scholarship Test</a></li>
+                    <li><a href="#" class="hover:text-blue-700 transition">Student Portal</a></li>
+                    <li><a href="index.html" class="hover:text-blue-700 transition font-black text-blue-600 underline">WebNova Agency</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-900 mb-10 border-l-4 border-blue-700 pl-4">Campus</h5>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-loose">
+                    BrightPath Tower, Model Town<br>
+                    Ludhiana, Punjab 141002<br><br>
+                    +91 91234 56789<br>
+                    support@brightpath.edu
+                </p>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-12 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center text-[9px] font-bold uppercase tracking-[0.4em] text-slate-300 gap-6">
+            <div>&copy; 2026 BRIGHTPATH ACADEMY &bull; ALL RIGHTS RESERVED</div>
+            <div>BUILT BY WEBNOVA STUDIO &bull; ARCHITECTING PERFORMANCE</div>
+        </div>
+    </footer>
+
+    <!-- Back to Agency Bottom Floating CTA -->
+    <div class="fixed bottom-8 right-8 z-[150]">
+        <a href="index.html" class="bg-blue-700/90 backdrop-blur-md px-6 py-4 rounded-xl flex items-center gap-4 hover:bg-slate-900 transition-all shadow-2xl group border border-blue-600">
+            <span class="text-[9px] font-black uppercase tracking-widest text-white">Hire Lead Architect</span>
+            <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-blue-700 group-hover:bg-blue-700 group-hover:text-white transition">
+                <i class="fa-solid fa-code text-[10px]"></i>
+            </div>
+        </a>
+    </div>
+
+    <script>
+        // Smooth Reveal Logic
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.onload = reveal;
+
+        // Methodology Tab Switcher Logic (Simulation)
+        const stepCards = document.querySelectorAll('.step-card');
+        stepCards.forEach(card => {
+            card.onclick = function() {
+                stepCards.forEach(c => {
+                    c.classList.remove('step-active');
+                    c.querySelector('.text-3xl').classList.remove('text-blue-700', 'opacity-20');
+                    c.querySelector('.text-3xl').classList.add('text-slate-300');
+                });
+                this.classList.add('step-active');
+                this.querySelector('.text-3xl').classList.add('text-blue-700', 'opacity-20');
+                this.querySelector('.text-3xl').classList.remove('text-slate-300');
+            }
+        });
+
+        // WhatsApp Lead Handler
+        document.getElementById('applyForm').onsubmit = function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const className = document.getElementById('class').value;
+            const text = `Hi! My name is ${name}. I want to enquire for the ${className} batch at BrightPath Academy.`;
+            window.open(`https://wa.me/910000000000?text=${encodeURIComponent(text)}`);
+        };
+    </script>
+</body>
+</html>

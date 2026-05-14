@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE KHANSAAMA | Fine Indian Dining Heritage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --rest-bg: #080705;
+            --rest-gold: #c5a059;
+            --rest-gold-muted: #846a32;
+            --rest-white: #e5e5e0;
+            --rest-card: #12110f;
+        }
+
+        * { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--rest-bg);
+            color: var(--rest-white);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .serif { font-family: 'Playfair Display', serif; }
+
+        /* Animation: Reveal on Scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Parallax Sensory Image */
+        .parallax-bg {
+            background-image: url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2070');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+        }
+
+        /* Nav Glassmorphism */
+        .nav-rest {
+            backdrop-filter: blur(15px);
+            background: rgba(8, 7, 5, 0.8);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+        }
+
+        /* Interactive Menu Row */
+        .menu-row {
+            border-bottom: 1px solid rgba(197, 160, 89, 0.15);
+            transition: all 0.4s ease;
+        }
+        .menu-row:hover {
+            border-bottom-color: var(--rest-gold);
+            padding-left: 20px;
+            background: rgba(197, 160, 89, 0.03);
+        }
+
+        /* Signature Dish Card */
+        .dish-card {
+            background: var(--rest-card);
+            border: 1px solid rgba(197, 160, 89, 0.1);
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            overflow: hidden;
+        }
+        .dish-card:hover {
+            border-color: var(--rest-gold);
+            transform: scale(1.02);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+        }
+        .dish-card img {
+            transition: transform 1.5s ease;
+            filter: saturate(0.8) contrast(1.1);
+        }
+        .dish-card:hover img {
+            transform: scale(1.1);
+            filter: saturate(1.1) contrast(1);
+        }
+
+        /* Gold Button Shine */
+        .btn-gold {
+            background: linear-gradient(135deg, var(--rest-gold), var(--rest-gold-muted));
+            color: #000;
+            font-weight: 800;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--rest-bg); }
+        ::-webkit-scrollbar-thumb { background: var(--rest-gold-muted); }
+
+        /* Vertical Text Decoration */
+        .ver-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PREVIEW BAR -->
+    <div class="fixed top-0 w-full z-[200] bg-[#c5a059] text-black py-2 text-center text-[10px] font-black uppercase tracking-[0.4em]">
+        Fine Dining Architecture Blueprint &bull; <a href="index.html" class="underline">Back to Agency</a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-8 w-full z-[100] nav-rest h-24 flex items-center">
+        <div class="max-w-7xl mx-auto px-10 w-full flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 border border-[#c5a059] flex items-center justify-center font-serif italic text-2xl text-[#c5a059]">K</div>
+                <div class="text-xl font-bold uppercase tracking-[0.3em] serif">The <span class="text-[#c5a059]">Khansaama</span></div>
+            </div>
+            
+            <div class="hidden lg:flex gap-12 text-[10px] font-black uppercase tracking-widest text-gray-500">
+                <a href="#heritage" class="hover:text-[#c5a059] transition">Our Story</a>
+                <a href="#menu" class="hover:text-[#c5a059] transition">The Menu</a>
+                <a href="#signature" class="hover:text-[#c5a059] transition">Signature</a>
+                <a href="#reviews" class="hover:text-[#c5a059] transition">Reviews</a>
+            </div>
+
+            <a href="https://wa.me/910000000000" class="btn-gold px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest shadow-2xl">
+                Reserve Table
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative h-screen flex items-center justify-center parallax-bg overflow-hidden">
+        <div class="absolute inset-0 bg-black/60"></div>
+        <div class="relative z-10 text-center px-6 reveal">
+            <span class="text-[#c5a059] font-bold uppercase tracking-[0.8em] text-[10px] mb-8 block">
+                Est. 1982 &bull; Traditional Dum Pukht
+            </span>
+            <h1 class="serif text-7xl md:text-[160px] italic leading-none tracking-tighter mb-10 text-[#e5e5e0]">
+                Taste of <br> <span class="not-italic font-bold text-[#c5a059]">Royalty.</span>
+            </h1>
+            <p class="max-w-xl mx-auto text-gray-400 text-lg mb-12 font-light italic leading-relaxed">
+                Indulge in the heritage of North Indian slow-cooking, where every dish is a secret handed down through generations of royal khansamas.
+            </p>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+                <a href="#menu" class="btn-gold px-12 py-5 rounded-full uppercase text-[10px] tracking-[0.4em]">
+                    Discover Menu
+                </a>
+                <a href="#heritage" class="text-white font-bold uppercase text-[10px] tracking-[0.4em] border-b border-white/20 pb-2 hover:border-[#c5a059] transition">
+                    Our Philosophy
+                </a>
+            </div>
+        </div>
+        
+        <!-- Decorative Scroll Down -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-40">
+            <div class="w-[1px] h-20 bg-gradient-to-b from-transparent to-[#c5a059]"></div>
+            <span class="ver-text text-[9px] font-black uppercase tracking-[0.5em] text-[#c5a059]">Scroll to Begin</span>
+        </div>
+    </section>
+
+    <!-- Heritage / Story Section -->
+    <section id="heritage" class="py-40 px-10 bg-[#080705]">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-24 items-center">
+                <div class="reveal">
+                    <span class="text-[#c5a059] font-black uppercase text-[10px] tracking-[0.5em] mb-8 block">Legacy of 40 Years</span>
+                    <h2 class="serif text-5xl md:text-7xl mb-12 italic leading-tight">Authenticity is <br> <span class="not-italic font-bold text-[#c5a059]">Patience.</span></h2>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-10 font-light italic">
+                        "The Khansaama was born from a desire to revive the lost recipes of Awadh. In a world of fast food, we choose the slow road."
+                    </p>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-12">
+                        We use traditional copper vessels and hand-pounded spices to ensure every bite is an explosion of history. Our black lentils are simmered for 24 hours on a low wood fire—a ritual we have maintained since 1982.
+                    </p>
+                    <div class="grid grid-cols-2 gap-10 border-t border-white/10 pt-12">
+                        <div>
+                            <div class="text-4xl font-bold text-[#c5a059] serif italic">100+</div>
+                            <div class="text-[9px] uppercase font-black tracking-widest text-gray-500 mt-2">Heirloom Recipes</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-bold text-[#c5a059] serif italic">4.9/5</div>
+                            <div class="text-[9px] uppercase font-black tracking-widest text-gray-500 mt-2">Diner Satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative reveal" style="transition-delay: 0.3s;">
+                    <div class="rounded-br-[120px] rounded-tl-[120px] overflow-hidden border border-[#c5a059]/20 p-4">
+                        <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?q=80&w=1036" class="w-full h-full object-cover rounded-br-[100px] rounded-tl-[100px] grayscale hover:grayscale-0 transition duration-1000">
+                    </div>
+                    <div class="absolute -bottom-10 -left-10 bg-[#c5a059] text-black p-10 rounded-full w-40 h-40 flex items-center justify-center text-center shadow-2xl">
+                        <div class="text-[10px] font-black uppercase tracking-widest italic">Est.<br><span class="text-2xl">1982</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Signature Showcase -->
+    <section id="signature" class="py-32 px-10 bg-[#0c0a09]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-24 reveal">
+                <h2 class="serif text-5xl md:text-7xl italic">Chef's <span class="not-italic font-bold text-[#c5a059]">Signatures</span></h2>
+                <p class="text-gray-500 mt-6 max-w-xl mx-auto uppercase text-[10px] font-black tracking-[0.5em]">The Pinnacle of Awadhi Cuisine</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Dish 1 -->
+                <div class="dish-card rounded-3xl p-4 reveal">
+                    <div class="relative h-80 rounded-2xl overflow-hidden mb-8">
+                        <img src="https://images.unsplash.com/photo-1631515233349-296065e19722?q=80&w=1000" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-[#c5a059] text-black px-3 py-1 rounded-full text-[9px] font-black uppercase">Legendary</div>
+                    </div>
+                    <div class="px-4 pb-4">
+                        <h4 class="serif text-2xl mb-2 italic">Sikandari Raan</h4>
+                        <p class="text-gray-500 text-xs leading-relaxed mb-6 font-light">Whole leg of spring lamb marinated for 48 hours in dark rum and exotic mountain spices.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-[#c5a059] font-bold">₹1,250</span>
+                            <a href="https://wa.me/910000000000" class="text-[9px] font-black uppercase tracking-widest border-b border-[#c5a059] pb-1">Order on WA</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dish 2 -->
+                <div class="dish-card rounded-3xl p-4 reveal" style="transition-delay: 0.1s;">
+                    <div class="relative h-80 rounded-2xl overflow-hidden mb-8">
+                        <img src="https://images.unsplash.com/photo-1544124499-58912cbddada?q=80&w=1000" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-[#c5a059] text-black px-3 py-1 rounded-full text-[9px] font-black uppercase">Slow Cooked</div>
+                    </div>
+                    <div class="px-4 pb-4">
+                        <h4 class="serif text-2xl mb-2 italic">Dal-E-Khansaama</h4>
+                        <p class="text-gray-500 text-xs leading-relaxed mb-6 font-light">The jewel of our kitchen. Black lentils simmered for 24 hours on slow wood fire with white butter.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-[#c5a059] font-bold">₹480</span>
+                            <a href="https://wa.me/910000000000" class="text-[9px] font-black uppercase tracking-widest border-b border-[#c5a059] pb-1">Order on WA</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dish 3 -->
+                <div class="dish-card rounded-3xl p-4 reveal" style="transition-delay: 0.2s;">
+                    <div class="relative h-80 rounded-2xl overflow-hidden mb-8">
+                        <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?q=80&w=1000" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-[#c5a059] text-black px-3 py-1 rounded-full text-[9px] font-black uppercase">Royal Feast</div>
+                    </div>
+                    <div class="px-4 pb-4">
+                        <h4 class="serif text-2xl mb-2 italic">Dum Pukht Biryani</h4>
+                        <p class="text-gray-500 text-xs leading-relaxed mb-6 font-light">Fragrant long-grain Basmati rice layered with saffron-infused lamb, sealed in a clay pot.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-[#c5a059] font-bold">₹850</span>
+                            <a href="https://wa.me/910000000000" class="text-[9px] font-black uppercase tracking-widest border-b border-[#c5a059] pb-1">Order on WA</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Full Menu Board -->
+    <section id="menu" class="py-40 px-10 bg-[#080705]">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col lg:flex-row gap-24">
+                <div class="lg:w-1/3 reveal">
+                    <span class="text-[#c5a059] font-black uppercase text-[10px] tracking-[0.5em] mb-6 block">The Main Board</span>
+                    <h2 class="serif text-6xl mb-10 leading-tight italic text-[#c5a059]">The Ritual <br> <span class="text-white not-italic font-bold">of Flavors.</span></h2>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-10">We believe that food should nourish not just the body, but the memory. Explore our handpicked menu of royal classics.</p>
+                    <a href="https://wa.me/910000000000" class="bg-white/5 border border-[#c5a059]/20 px-8 py-4 rounded-full text-[10px] font-black uppercase tracking-[0.3em] hover:bg-[#c5a059] hover:text-black transition">Download Full Menu PDF</a>
+                </div>
+
+                <div class="lg:w-2/3 grid md:grid-cols-2 gap-16 reveal" style="transition-delay: 0.2s;">
+                    <div>
+                        <h4 class="serif text-xl gold-text mb-8 italic border-l-2 border-[#c5a059] pl-6 uppercase tracking-widest">Shuruwaat (Appetizers)</h4>
+                        <div class="space-y-4">
+                            <div class="menu-row py-4 flex justify-between items-end">
+                                <div><h5 class="text-sm font-bold uppercase tracking-tight">Galouti Kebab</h5><p class="text-[9px] text-gray-600 mt-1 italic">Melt-in-mouth lamb patties</p></div>
+                                <span class="serif font-bold text-[#c5a059]">₹580</span>
+                            </div>
+                            <div class="menu-row py-4 flex justify-between items-end">
+                                <div><h5 class="text-sm font-bold uppercase tracking-tight">Paneer Peshawari</h5><p class="text-[9px] text-gray-600 mt-1 italic">Stuffed cottage cheese</p></div>
+                                <span class="serif font-bold text-[#c5a059]">₹420</span>
+                            </div>
+                            <div class="menu-row py-4 flex justify-between items-end">
+                                <div><h5 class="text-sm font-bold uppercase tracking-tight">Murgh Malai Tikka</h5><p class="text-[9px] text-gray-600 mt-1 italic">Creamy clay-oven chicken</p></div>
+                                <span class="serif font-bold text-[#c5a059]">₹520</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="serif text-xl gold-text mb-8 italic border-l-2 border-[#c5a059] pl-6 uppercase tracking-widest">Zaika (Main Course)</h4>
+                        <div class="space-y-4">
+                            <div class="menu-row py-4 flex justify-between items-end">
+                                <div><h5 class="text-sm font-bold uppercase tracking-tight">Mutton Rogan Josh</h5><p class="text-[9px] text-gray-600 mt-1 italic">Kashmiri red chilly gravy</p></div>
+                                <span class="serif font-bold text-[#c5a059]">₹780</span>
+                            </div>
+                            <div class="menu-row py-4 flex justify-between items-end">
+                                <div><h5 class="text-sm font-bold uppercase tracking-tight">Lasooni Palak</h5><p class="text-[9px] text-gray-600 mt-1 italic">Garlicky tempered spinach</p></div>
+                                <span class="serif font-bold text-[#c5a059]">₹390</span>
+                            </div>
+                            <div class="menu-row py-4 flex justify-between items-end">
+                                <div><h5 class="text-sm font-bold uppercase tracking-tight">Butter Chicken (Old School)</h5><p class="text-[9px] text-gray-600 mt-1 italic">Chef's special recipe</p></div>
+                                <span class="serif font-bold text-[#c5a059]">₹650</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sensory Experience Philosophy -->
+    <section class="py-40 bg-[#050403] relative overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center reveal px-6">
+            <i class="fa-solid fa-pepper-hot text-[#c5a059] text-3xl mb-10"></i>
+            <h2 class="serif text-5xl md:text-7xl italic mb-10">The Alchemy <br> <span class="not-italic font-bold text-[#c5a059]">of Spice.</span></h2>
+            <p class="text-gray-400 text-xl leading-relaxed font-light mb-16 italic">
+                "Our spices are not bought from shelves; they are curated from the fields of Kerala and Kashmir, hand-pounded by artisans who understand that a spice is a living soul."
+            </p>
+            <div class="grid md:grid-cols-3 gap-12 text-left border-t border-white/5 pt-20">
+                <div>
+                    <h5 class="text-[#c5a059] uppercase text-[10px] font-black tracking-widest mb-4">Original Copper</h5>
+                    <p class="text-xs text-gray-500 leading-relaxed font-light">Every curry is prepared in tinned copper Handis to maintain mineral integrity and even heat distribution.</p>
+                </div>
+                <div>
+                    <h5 class="text-[#c5a059] uppercase text-[10px] font-black tracking-widest mb-4">Slow Charcoal</h5>
+                    <p class="text-xs text-gray-500 leading-relaxed font-light">We use specific woods to infuse smoke—Kikar for kebabs and Mango wood for the earthen oven.</p>
+                </div>
+                <div>
+                    <h5 class="text-[#c5a059] uppercase text-[10px] font-black tracking-widest mb-4">Aged Basmati</h5>
+                    <p class="text-xs text-gray-500 leading-relaxed font-light">Our rice is aged for 24 months in a temperature-controlled environment for maximum aroma.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-40 bg-[#080705] px-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-3 gap-12 items-center">
+                <div class="reveal">
+                    <h2 class="serif text-5xl md:text-6xl mb-8 italic">Voice of <br> our <span class="not-italic font-bold text-[#c5a059]">Guests.</span></h2>
+                    <p class="text-gray-500 text-sm italic font-light">Real words from real connoisseurs who appreciate the art of slow-cooking.</p>
+                </div>
+                <div class="reveal bg-white/5 p-12 rounded-br-[80px] border border-white/5 hover:border-[#c5a059]/30 transition-all duration-500 group">
+                    <div class="text-yellow-500 text-xs mb-6"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="serif text-xl italic mb-8 group-hover:text-white transition">"The best Biryani I've tasted outside of Lucknow. The saffron aroma hits you before the dish even arrives at the table."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-[#c5a059] flex items-center justify-center font-bold text-black">RV</div>
+                        <div><h6 class="text-xs font-black uppercase tracking-widest">Rahul Varma</h6><p class="text-[9px] text-gray-500 uppercase">Food Critic</p></div>
+                    </div>
+                </div>
+                <div class="reveal bg-white/5 p-12 rounded-br-[80px] border border-white/5 hover:border-[#c5a059]/30 transition-all duration-500 group">
+                    <div class="text-yellow-500 text-xs mb-6"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="serif text-xl italic mb-8 group-hover:text-white transition">"Perfect for our anniversary. The service is royal, the atmosphere is quiet and expensive. A true Ludhiana gem."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-[#c5a059] flex items-center justify-center font-bold text-black">PK</div>
+                        <div><h6 class="text-xs font-black uppercase tracking-widest">Priya Kapoor</h6><p class="text-[9px] text-gray-500 uppercase">Entrepreneur</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation CTA Section -->
+    <section class="py-40 bg-[#0c0a09] relative overflow-hidden border-y border-white/5">
+        <div class="max-w-4xl mx-auto text-center reveal relative z-10 px-6">
+            <h2 class="serif text-6xl md:text-9xl mb-12 italic tracking-tighter">Reserve Your <br> <span class="not-italic font-bold text-[#c5a059]">Throne.</span></h2>
+            <p class="text-gray-400 text-lg mb-12 font-light">We only accept 20 reservations per evening to ensure the level of service you deserve.</p>
+            <div class="flex flex-col md:flex-row gap-6 justify-center">
+                <a href="https://wa.me/910000000000" class="btn-gold px-12 py-5 rounded-full uppercase text-xs tracking-[0.3em]">Initialize Reservation</a>
+                <a href="tel:+919876543210" class="border border-white/10 px-12 py-5 rounded-full uppercase text-xs tracking-[0.3em] hover:bg-white/5">Call Concierge</a>
+            </div>
+        </div>
+        <!-- Abstract Decoration -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#c5a059]/5 blur-[120px] rounded-full pointer-events-none"></div>
+    </section>
+
+    <!-- Detailed Footer -->
+    <footer class="py-24 bg-[#080705] border-t border-white/5 px-10">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-20">
+            <div class="col-span-1">
+                <div class="text-2xl font-bold italic serif mb-8 uppercase tracking-tighter text-[#c5a059]">The Khansaama</div>
+                <p class="text-gray-500 text-[10px] leading-loose font-bold uppercase tracking-widest mb-10">Signature Indian Cuisine &bull; Ludhiana &bull; Established 1982</p>
+                <div class="flex gap-6 text-[#c5a059]">
+                    <a href="#" class="hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-white transition"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h5 class="text-[10px] font-black uppercase tracking-[0.4em] text-[#c5a059] mb-10 border-l border-[#c5a059] pl-4">The Nook</h5>
+                <ul class="space-y-4 text-[10px] font-bold text-gray-500 uppercase tracking-widest">
+                    <li>Sarabha Nagar, Phase 2</li>
+                    <li>Ludhiana, Punjab</li>
+                    <li>Tue - Sun: 12:00 - 23:00</li>
+                    <li class="text-red-900">Closed on Mondays</li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="text-[10px] font-black uppercase tracking-[0.4em] text-[#c5a059] mb-10 border-l border-[#c5a059] pl-4">Navigation</h5>
+                <ul class="space-y-4 text-[10px] font-bold text-gray-500 uppercase tracking-widest">
+                    <li><a href="#heritage" class="hover:text-white transition">Our Legacy</a></li>
+                    <li><a href="#menu" class="hover:text-white transition">The Menu</a></li>
+                    <li><a href="#signature" class="hover:text-white transition">Signatures</a></li>
+                    <li><a href="index.html" class="hover:text-[#c5a059] transition font-black">WebNova Agency</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="text-[10px] font-black uppercase tracking-[0.4em] text-[#c5a059] mb-10 border-l border-[#c5a059] pl-4">Contacts</h5>
+                <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest leading-loose">
+                    +91 91234 56789<br>
+                    royal@khansaama.in<br><br>
+                    <span class="text-gray-400">Valet Parking Available</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto mt-24 pt-12 border-t border-white/5 flex flex-col md:row justify-between items-center text-[9px] font-black uppercase tracking-[0.4em] text-gray-600 gap-8">
+            <div>&copy; 2026 THE KHANSAAMA &bull; ALL RIGHTS RESERVED</div>
+            <div>ARCHITECTED BY WEBNOVA STUDIO &bull; DOMINATING GROWTH</div>
+        </div>
+    </footer>
+
+    <!-- Back to Agency Bottom Floating CTA -->
+    <div class="fixed bottom-8 left-8 z-[150]">
+        <a href="index.html" class="bg-[#c5a059] text-black px-6 py-4 rounded-full flex items-center gap-4 hover:bg-white transition-all shadow-2xl group">
+            <span class="text-[9px] font-black uppercase tracking-widest">Hire Architect</span>
+            <div class="w-8 h-8 bg-black rounded-full flex items-center justify-center text-[#c5a059] group-hover:bg-[#c5a059] group-hover:text-black transition">
+                <i class="fa-solid fa-code text-[10px]"></i>
+            </div>
+        </a>
+    </div>
+
+    <script>
+        // Smooth Reveal Logic
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 150) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.onload = reveal;
+
+        // Custom Nav Interaction
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('top-0');
+                nav.classList.remove('top-8');
+                nav.style.height = "80px";
+            } else {
+                nav.classList.add('top-8');
+                nav.classList.remove('top-0');
+                nav.style.height = "96px";
+            }
+        });
+    </script>
+</body>
+</html>

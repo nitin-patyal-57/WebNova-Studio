@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE VELVET ROOM | Luxury Beauty & Bridal Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --luxe-black: #0a0a0a;
+            --luxe-pink: #ec4899;
+            --luxe-gold: #d4af37;
+            --luxe-bg: #fffcfc;
+            --luxe-gray: #f3f4f6;
+        }
+
+        * { scroll-behavior: smooth; cursor: default; }
+
+        body {
+            background-color: var(--luxe-bg);
+            color: var(--luxe-black);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .serif { font-family: 'Playfair Display', serif; }
+
+        /* Mag-Style Parallax Hero */
+        .hero-parallax {
+            background-image: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=2070');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+        }
+
+        /* Reveal Logic */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Nav Glassmorphism */
+        .nav-luxe {
+            backdrop-filter: blur(15px);
+            background: rgba(255, 252, 252, 0.8);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Custom Service Cards */
+        .service-card {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .service-card img {
+            transition: transform 1.2s ease;
+        }
+        .service-card:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Price List Hover */
+        .price-item {
+            border-bottom: 1px solid #f3f4f6;
+            transition: all 0.3s ease;
+        }
+        .price-item:hover {
+            background-color: #fff5f7;
+            padding-left: 15px;
+            border-bottom-color: var(--luxe-pink);
+        }
+
+        /* Animated CTA Button */
+        .btn-ritual {
+            background: var(--luxe-black);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .btn-ritual::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: var(--luxe-pink);
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+        .btn-ritual:hover::before {
+            left: 0;
+        }
+
+        /* Image Mask for Aesthetics */
+        .mask-blob {
+            mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23FF0066' d='M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-45.8C87.4,-32.6,90,-16.3,88.5,-0.9C87,14.6,81.4,29.1,73,41.4C64.6,53.7,53.3,63.7,40.5,71.3C27.7,78.8,13.8,83.9,-0.6,85C-15.1,86.1,-30.1,83.2,-43.8,76.1C-57.5,69,-69.8,57.7,-78.1,44.1C-86.4,30.5,-90.7,14.6,-89.9,-1.2C-89.1,-17.1,-83.3,-32.9,-74.1,-45.1C-64.9,-57.3,-52.3,-65.9,-39.2,-73.6C-26.1,-81.3,-13,-88.2,1.2,-86.2C15.4,-84.1,30.7,-83.5,44.7,-76.4Z' transform='translate(100 100)' /%3E%3C/svg%3E");
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+        }
+
+        /* Custom UI Scrollbar */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--luxe-bg); }
+        ::-webkit-scrollbar-thumb { background: #d1d5db; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--luxe-pink); }
+    </style>
+</head>
+<body>
+
+    <!-- PREVIEW BAR -->
+    <div class="fixed top-0 w-full z-[200] bg-black text-white py-2 text-center text-[9px] font-bold uppercase tracking-[0.5em]">
+        Luxe Blueprint Preview &bull; <a href="index.html" class="underline decoration-pink-500">Back to WebNova Agency</a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-8 w-full z-[100] nav-luxe h-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-10 w-full flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-12 border border-black flex items-center justify-center font-serif italic text-xl">V</div>
+                <div class="text-lg font-black uppercase tracking-[0.2em] serif">The <span class="text-pink-500">Velvet</span> Room</div>
+            </div>
+            
+            <div class="hidden lg:flex gap-12 text-[10px] font-black uppercase tracking-widest text-gray-400">
+                <a href="#rituals" class="hover:text-black transition">Rituals</a>
+                <a href="#menu" class="hover:text-black transition">The Menu</a>
+                <a href="#stylists" class="hover:text-black transition">Artisans</a>
+                <a href="#bridal" class="hover:text-black transition text-pink-500">Bridal Luxe</a>
+            </div>
+
+            <a href="https://wa.me/910000000000" class="btn-ritual px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all shadow-xl">
+                Book Ritual
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center hero-parallax overflow-hidden">
+        <div class="absolute inset-0 bg-white/10"></div>
+        <div class="relative z-10 text-center px-6 reveal">
+            <span class="inline-block px-6 py-1 border border-black/10 bg-white/50 backdrop-blur-md text-black text-[10px] font-black uppercase tracking-[0.6em] mb-10 italic">
+                Artistry in Every Detail
+            </span>
+            <h1 class="serif text-7xl md:text-[140px] font-light leading-none tracking-tighter mb-10 text-black">
+                Define Your <br> <span class="italic font-bold">Radiance.</span>
+            </h1>
+            <p class="max-w-xl mx-auto text-gray-700 text-lg mb-12 font-light italic leading-relaxed">
+                Experience Ludhiana's most exclusive beauty destination, where medical precision meets the luxury of a private spa ritual.
+            </p>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+                <a href="#menu" class="btn-ritual px-12 py-5 rounded-full font-black uppercase text-[10px] tracking-[0.3em]">
+                    Explore Services
+                </a>
+                <a href="#rituals" class="text-black font-black uppercase text-[10px] tracking-[0.5em] border-b border-black/20 pb-2 hover:border-black transition">
+                    Our Philosophy
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introductory Statement -->
+    <section class="py-40 px-10 bg-white">
+        <div class="max-w-4xl mx-auto text-center reveal">
+            <h2 class="serif text-4xl md:text-6xl mb-12 leading-tight italic">"Beauty is not an appointment. It is a <span class="text-pink-500 font-bold">transformation</span> of the soul."</h2>
+            <div class="w-20 h-[1px] bg-pink-200 mx-auto mb-12"></div>
+            <p class="text-gray-400 text-sm uppercase tracking-[0.4em] font-bold">Sonia Mehra &bull; Creative Director</p>
+        </div>
+    </section>
+
+    <!-- Visual Services Grid -->
+    <section id="rituals" class="py-20 bg-gray-50">
+        <div class="grid grid-cols-1 md:grid-cols-3">
+            <div class="service-card h-[600px] bg-black text-white group">
+                <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=1000" class="w-full h-full object-cover opacity-60 grayscale group-hover:opacity-40 group-hover:grayscale-0">
+                <div class="absolute inset-0 p-16 flex flex-col justify-end">
+                    <h3 class="serif text-4xl mb-6 italic">Hair Couture</h3>
+                    <p class="text-gray-300 text-sm mb-8 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-10 group-hover:translate-y-0">From Balayage to Keratin, we use only premium Olaplex® and L'Oréal Professional®.</p>
+                    <a href="#" class="text-[10px] font-black uppercase tracking-[0.5em] border-b border-white/30 pb-2 w-fit">Discover</a>
+                </div>
+            </div>
+            <div class="service-card h-[600px] bg-pink-100 text-black group border-x border-white/10">
+                <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=1000" class="w-full h-full object-cover opacity-80 grayscale group-hover:grayscale-0">
+                <div class="absolute inset-0 p-16 flex flex-col justify-end">
+                    <h3 class="serif text-4xl mb-6 italic">Skin Rituals</h3>
+                    <p class="text-gray-800 text-sm mb-8 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-10 group-hover:translate-y-0">Medical-grade facials and deep hydration rituals for that signature Velvet glow.</p>
+                    <a href="#" class="text-[10px] font-black uppercase tracking-[0.5em] border-b border-black/30 pb-2 w-fit">Discover</a>
+                </div>
+            </div>
+            <div class="service-card h-[600px] bg-black text-white group">
+                <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=1000" class="w-full h-full object-cover opacity-60 grayscale group-hover:opacity-40 group-hover:grayscale-0">
+                <div class="absolute inset-0 p-16 flex flex-col justify-end">
+                    <h3 class="serif text-4xl mb-6 italic">Bridal Luxe</h3>
+                    <p class="text-gray-300 text-sm mb-8 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-10 group-hover:translate-y-0">Complete transformations including makeup, hair, and draping for your royal day.</p>
+                    <a href="#" class="text-[10px] font-black uppercase tracking-[0.5em] border-b border-white/30 pb-2 w-fit">Discover</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Detailed Menu -->
+    <section id="menu" class="py-40 px-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col lg:flex-row gap-24">
+                <div class="lg:w-1/3 reveal">
+                    <span class="text-pink-500 font-black uppercase text-[10px] tracking-[0.5em] mb-6 block">Service Menu</span>
+                    <h2 class="serif text-6xl mb-10 leading-tight">The <br> <span class="italic font-bold">Ritual</span> <br> List.</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-10">All our services include a mandatory 10-minute digital skin or hair analysis to ensure bespoke care.</p>
+                    <a href="https://wa.me/910000000000" class="text-black font-black uppercase text-[10px] tracking-[0.5em] border-b-2 border-pink-500 pb-2">Full Menu PDF</a>
+                </div>
+
+                <div class="lg:w-2/3 grid md:grid-cols-2 gap-16 reveal" style="transition-delay: 0.2s;">
+                    <div>
+                        <h4 class="serif text-2xl mb-8 border-l-4 border-pink-500 pl-6 italic">Hair Design</h4>
+                        <div class="space-y-2">
+                            <div class="price-item py-5 flex justify-between items-center">
+                                <span class="text-xs font-bold uppercase tracking-widest text-gray-500">Designer Cut</span>
+                                <span class="font-serif italic font-bold">₹1,500</span>
+                            </div>
+                            <div class="price-item py-5 flex justify-between items-center">
+                                <span class="text-xs font-bold uppercase tracking-widest text-gray-500">Global Color</span>
+                                <span class="font-serif italic font-bold">₹4,200</span>
+                            </div>
+                            <div class="price-item py-5 flex justify-between items-center">
+                                <span class="text-xs font-bold uppercase tracking-widest text-gray-500">Keratin Infusion</span>
+                                <span class="font-serif italic font-bold">₹6,500+</span>
+                            </div>
+                            <div class="price-item py-5 flex justify-between items-center">
+                                <span class="text-xs font-bold uppercase tracking-widest text-gray-500">Silk Press</span>
+                                <span class="font-serif italic font-bold">₹2,800</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="serif text-2xl mb-8 border-l-4 border-pink-500 pl-6 italic">Skin & Glow</h4>
+                        <div class="space-y-2">
+                            <div class="price-item py-5 flex justify-between items-center">
+                                <span class="text-xs font-bold uppercase tracking-widest text-gray-500">Signature HydraFacial</span>
+                                <span class="font-serif italic font-bold">₹4,500</span>
+                            </div>
+                            <div class="price-item py-5 flex justify-between items-center">
+                                <span class="text-xs font-bold uppercase tracking-widest text-gray-500">O3+ Whitening Ritual</span>
+                                <span class="font-serif italic font-bold">₹3,200</span>
+                            </div>
+                            <div class="price-item py-5 flex justify-between items-center">
+                                <span class="text-xs font-bold uppercase tracking-widest text-gray-500">Charcoal Medical Peel</span>
+                                <span class="font-serif italic font-bold">₹2,800</span>
+                            </div>
+                            <div class="price-item py-5 flex justify-between items-center">
+                                <span class="text-xs font-bold uppercase tracking-widest text-gray-500">24K Gold Ritual</span>
+                                <span class="font-serif italic font-bold">₹5,500</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artisan Stylists Section -->
+    <section id="stylists" class="py-40 bg-gray-50 px-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-24 reveal">
+                <h2 class="serif text-6xl italic">The <span class="font-bold">Artisans</span></h2>
+                <div class="w-16 h-[1px] bg-black mx-auto mt-8"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-20">
+                <div class="reveal group cursor-pointer">
+                    <div class="relative h-[650px] overflow-hidden rounded-[60px] mb-10 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?q=80&w=1000" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-1000">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-16 flex flex-col justify-end">
+                            <div class="text-white text-xs font-bold uppercase tracking-[0.4em] mb-4">12 Years Exp.</div>
+                            <p class="text-gray-300 text-sm font-light italic">"I don't just cut hair; I sculpt confidence. My goal is to find the style that mirrors your inner strength."</p>
+                        </div>
+                    </div>
+                    <h4 class="serif text-3xl font-bold text-center">Sonia Mehra</h4>
+                    <p class="text-pink-500 text-[10px] font-black uppercase tracking-[0.4em] text-center mt-4">Master Creative Stylist</p>
+                </div>
+                <div class="reveal group cursor-pointer pt-20">
+                    <div class="relative h-[650px] overflow-hidden rounded-[60px] mb-10 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=1000" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-1000">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-16 flex flex-col justify-end">
+                            <div class="text-white text-xs font-bold uppercase tracking-[0.4em] mb-4">8 Years Exp.</div>
+                            <p class="text-gray-300 text-sm font-light italic">"Skin is a living organ. My rituals are designed to respect its biology while enhancing its natural luminosity."</p>
+                        </div>
+                    </div>
+                    <h4 class="serif text-3xl font-bold text-center">Riya Kapoor</h4>
+                    <p class="text-pink-500 text-[10px] font-black uppercase tracking-[0.4em] text-center mt-4">Senior Esthetician</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof / Review Strip -->
+    <section class="py-32 bg-white px-10 border-y border-gray-100">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+            <div class="reveal text-center md:text-left">
+                <div class="flex gap-2 text-pink-500 text-xs mb-4 justify-center md:justify-start">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <h3 class="serif text-3xl italic">"The only world-class salon in Punjab. The attention to detail is breathtaking."</h3>
+                <p class="mt-6 text-gray-400 text-[10px] font-black uppercase tracking-widest">— Mehak Dhillon, Fashion Blogger</p>
+            </div>
+            <div class="h-20 w-[1px] bg-gray-200 hidden md:block"></div>
+            <div class="reveal text-center md:text-left" style="transition-delay: 0.2s;">
+                <div class="text-4xl font-bold serif italic mb-2">4.9 / 5.0</div>
+                <p class="text-gray-400 text-[10px] font-black uppercase tracking-widest">Google Business Rating</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section id="process" class="py-40 px-10 bg-soft">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-24 items-center">
+                <div class="reveal">
+                    <span class="text-pink-500 font-black uppercase text-[10px] tracking-[0.5em] mb-6 block">The Velvet Experience</span>
+                    <h2 class="serif text-6xl mb-12">What to <br> <span class="italic font-bold">Expect.</span></h2>
+                    
+                    <div class="space-y-12">
+                        <div class="flex gap-10">
+                            <div class="text-4xl font-light text-pink-200 serif italic">01</div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2 uppercase tracking-tighter">The Analysis</h4>
+                                <p class="text-gray-500 text-sm leading-relaxed">Every ritual begins with a deep-tissue or follicular analysis using our proprietary digital scanners.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-10">
+                            <div class="text-4xl font-light text-pink-200 serif italic">02</div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2 uppercase tracking-tighter">The Immersion</h4>
+                                <p class="text-gray-500 text-sm leading-relaxed">Relax in our sound-dampened therapy zones with aromatherapy curated to your mood.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-10">
+                            <div class="text-4xl font-light text-pink-200 serif italic">03</div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2 uppercase tracking-tighter">The Reveal</h4>
+                                <p class="text-gray-500 text-sm leading-relaxed">Step out into the world not just looking different, but feeling entirely rejuvenated.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative reveal" style="transition-delay: 0.3s;">
+                    <div class="rounded-[80px] overflow-hidden shadow-2xl border-[15px] border-white rotate-2 hover:rotate-0 transition duration-700">
+                        <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=1000" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-10 -left-10 bg-white p-10 rounded-full shadow-2xl z-10 w-40 h-40 flex flex-col items-center justify-center text-center">
+                        <div class="text-2xl font-bold italic serif">100%</div>
+                        <div class="text-[8px] font-black uppercase tracking-widest text-pink-500">Cruelty <br> Free</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bridal Luxe Callout -->
+    <section id="bridal" class="py-40 bg-black text-white px-10 text-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-30 grayscale">
+            <img src="https://images.unsplash.com/photo-1594463750939-ebb28c3f7f75?q=80&w=2070" class="w-full h-full object-cover">
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto reveal">
+            <span class="text-pink-500 font-black uppercase text-[10px] tracking-[0.6em] mb-8 block">Royal Transformations</span>
+            <h2 class="serif text-6xl md:text-8xl italic mb-10">Your Big Day, <br> Our <span class="font-bold not-italic">Masterpiece.</span></h2>
+            <p class="text-gray-400 text-lg mb-12 font-light">Dedicated bridal suites, celebrity makeup artists, and a concierge service that handles everything while you breathe.</p>
+            <a href="https://wa.me/910000000000" class="inline-block bg-white text-black px-12 py-5 rounded-full font-black uppercase text-[10px] tracking-[0.4em] hover:bg-pink-500 hover:text-white transition shadow-2xl">Request Bridal Brochure</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-24 px-10 bg-[#fffcfc] border-t border-gray-100">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-20">
+            <div class="col-span-1">
+                <div class="text-2xl font-black italic serif mb-8 uppercase tracking-tighter">Velvet<span class="text-pink-500">Room</span></div>
+                <p class="text-gray-400 text-[10px] leading-loose font-bold uppercase tracking-widest mb-10">Luxury Spa &bull; Salon &bull; Bridal Couture &bull; Ludhiana &bull; Established 2012</p>
+                <div class="flex gap-6 text-black">
+                    <a href="#" class="hover:text-pink-500 transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-pink-500 transition"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#" class="hover:text-pink-500 transition"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h5 class="text-[10px] font-black uppercase tracking-[0.4em] text-pink-500 mb-10">Navigation</h5>
+                <ul class="space-y-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                    <li><a href="#hero" class="hover:text-black transition">Home</a></li>
+                    <li><a href="#rituals" class="hover:text-black transition">Rituals</a></li>
+                    <li><a href="#menu" class="hover:text-black transition">Price List</a></li>
+                    <li><a href="index.html" class="hover:text-pink-500 transition font-black">WebNova Studio</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="text-[10px] font-black uppercase tracking-[0.4em] text-pink-500 mb-10">Business</h5>
+                <ul class="space-y-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                    <li><a href="#" class="hover:text-black transition">Gift Cards</a></li>
+                    <li><a href="#" class="hover:text-black transition">Careers</a></li>
+                    <li><a href="#" class="hover:text-black transition">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-black transition">Memberships</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="text-[10px] font-black uppercase tracking-[0.4em] text-pink-500 mb-10">Ludhiana HQ</h5>
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-loose">
+                    Suites 4-6, Silver Arc Mall,<br>
+                    Ferozepur Road, Ludhiana<br><br>
+                    +91 98765 43210<br>
+                    rituals@velvetroom.com
+                </p>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto mt-24 pt-12 border-t border-gray-100 flex flex-col md:row justify-between items-center text-[8px] font-black uppercase tracking-[0.5em] text-gray-300 gap-8">
+            <div>&copy; 2026 THE VELVET ROOM &bull; ALL RIGHTS RESERVED</div>
+            <div class="flex items-center gap-4">
+                <span>CRAFTED BY WEBNOVA STUDIO</span>
+                <div class="w-1 h-1 rounded-full bg-pink-500"></div>
+                <span>INTERNATIONAL STANDARDS</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Agency Bottom Floating CTA -->
+    <div class="fixed bottom-8 right-8 z-[150]">
+        <a href="index.html" class="bg-black text-white px-6 py-4 rounded-full flex items-center gap-4 hover:bg-pink-500 transition-all shadow-2xl group border border-white/10">
+            <span class="text-[9px] font-black uppercase tracking-widest">Hire Architect</span>
+            <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-black group-hover:bg-black group-hover:text-white transition">
+                <i class="fa-solid fa-code text-[10px]"></i>
+            </div>
+        </a>
+    </div>
+
+    <script>
+        // Smooth Reveal Logic
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 150) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.onload = reveal;
+
+        // Custom Nav Interaction
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('top-0');
+                nav.classList.remove('top-8');
+                nav.style.height = "70px";
+            } else {
+                nav.classList.add('top-8');
+                nav.classList.remove('top-0');
+                nav.style.height = "80px";
+            }
+        });
+    </script>
+</body>
+</html>
