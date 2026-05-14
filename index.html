@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebNova Studio | Premium Digital Architect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #030014;
+            --card: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --accent: #6366F1;
+            --accent-glow: rgba(99, 102, 241, 0.2);
+        }
+
+        * { scroll-behavior: smooth; cursor: crosshair; }
+        body { background-color: var(--bg); color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+        
+        /* High-End Background */
+        .stars {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #161033 0%, #030014 100%);
+            z-index: -1;
+        }
+
+        .grid-lines {
+            position: fixed; inset: 0;
+            background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 60px 60px; z-index: -1; mask-image: radial-gradient(circle at 50% 50%, black, transparent);
+        }
+
+        /* Nav Glassmorphism */
+        .nav-blur {
+            backdrop-filter: blur(12px); background: rgba(3, 0, 20, 0.7);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .h-premium { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.04em; line-height: 0.9; }
+
+        .glass-card {
+            background: var(--card); border: 1px solid var(--border);
+            backdrop-filter: blur(10px); border-radius: 24px;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative; overflow: hidden;
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--accent);
+            transform: translateY(-10px) scale(1.01);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px var(--accent-glow);
+        }
+
+        .btn-shine {
+            position: relative; overflow: hidden;
+            background: var(--accent); transition: 0.4s;
+            display: inline-flex; align-items: center; justify-content: center;
+        }
+        .btn-shine::after {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg); transition: 0.8s;
+        }
+        .btn-shine:hover::after { left: 120%; }
+
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 1s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+
+        .demo-btn.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        #demo-viewport::-webkit-scrollbar { width: 4px; }
+        #demo-viewport::-webkit-scrollbar-thumb { background: #6366F133; border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="stars"></div>
+    <div class="grid-lines"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-[100] nav-blur">
+        <div class="max-w-7xl mx-auto px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-indigo-600 rounded-lg rotate-12 flex items-center justify-center font-bold">W</div>
+                <span class="text-xl font-bold h-premium uppercase tracking-tighter">WebNova<span class="text-indigo-500">.</span></span>
+            </div>
+            
+            <div class="hidden md:flex gap-10 text-xs font-bold uppercase tracking-[0.2em] text-gray-400">
+                <a href="#home" class="hover:text-white transition">Intro</a>
+                <a href="#portfolio" class="hover:text-white transition">Architecture</a>
+                <a href="#demos" class="hover:text-white transition">Demos</a>
+                <a href="#services" class="hover:text-white transition">Solutions</a>
+                <a href="#pricing" class="hover:text-white transition">Investment</a>
+                <a href="#contact" class="hover:text-white transition text-indigo-400">Collaborate</a>
+            </div>
+
+            <a href="#contact" class="btn-shine px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest">Free Consultation</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="home" class="relative min-h-screen flex flex-col items-center justify-center pt-20 px-6 text-center">
+        <div class="reveal">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-[10px] font-bold uppercase tracking-widest mb-8">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                </span>
+                Available for New Projects
+            </div>
+            <h1 class="h-premium text-7xl md:text-[120px] mb-8 font-black uppercase">
+                WE BUILD <br> <span class="text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500">DIGITAL ASSETS.</span>
+            </h1>
+            <p class="max-w-xl mx-auto text-gray-400 text-lg mb-12 font-light leading-relaxed">
+                We design and develop high-conversion websites for local Indian businesses. <br>
+                <span class="text-white font-semibold underline decoration-indigo-500 uppercase tracking-tighter">No templates. No clutter. Just growth.</span>
+            </p>
+            <div class="flex flex-col md:row items-center justify-center gap-6">
+                <a href="#contact" class="btn-shine px-12 py-5 rounded-xl font-bold text-sm tracking-widest uppercase">Start Building</a>
+                <a href="#portfolio" class="text-gray-400 hover:text-white transition flex items-center gap-2 text-sm font-bold uppercase">
+                    View Architecture <i class="fa-solid fa-arrow-right-long"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- RE-ENGINEERED PORTFOLIO SECTION -->
+    <section id="portfolio" class="py-32 px-8 bg-[#050312] overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-20 items-center">
+                <div class="reveal">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-400 text-[10px] font-black uppercase tracking-[0.3em] mb-8 border border-indigo-500/20">
+                        Lead Developer & Architect
+                    </div>
+                    <h2 class="h-premium text-6xl md:text-8xl mb-8 uppercase leading-[0.9]">
+                        THE <br> <span class="text-indigo-500">MASTER</span> <br> PORTFOLIO.
+                    </h2>
+                    <p class="text-gray-400 text-lg mb-10 leading-relaxed max-w-md">
+                        I don't just write code; I architect digital experiences. Explore my primary workspace to see the technical precision I bring to every project.
+                    </p>
+                    
+                    <button onclick="launchToNewTab(this)" class="btn-shine group relative flex items-center gap-6 px-10 py-6 rounded-2xl font-black uppercase text-xs tracking-[0.3em] overflow-hidden">
+                        <span id="btn-text">Initialize Live Server</span>
+                        <i id="btn-icon" class="fa-solid fa-arrow-up-right-from-square"></i>
+                        <div id="progress-bar" class="absolute bottom-0 left-0 h-1 bg-white/40 w-0 transition-all duration-1000"></div>
+                    </button>
+
+                    <div class="mt-12 flex gap-10 items-center border-t border-white/5 pt-10">
+                        <div>
+                            <div class="text-2xl font-bold h-premium">React</div>
+                            <div class="text-[10px] text-gray-500 uppercase tracking-widest">Environment</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold h-premium">GSAP</div>
+                            <div class="text-[10px] text-gray-500 uppercase tracking-widest">Motion Eng.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative reveal hidden md:block" style="transition-delay: 0.2s;">
+                    <div class="glass-card p-3 rounded-[40px] border-white/10 group cursor-pointer" onclick="launchToNewTab()">
+                        <div class="relative bg-[#030014] rounded-[32px] overflow-hidden border border-white/10 h-[500px] shadow-2xl">
+                            <div class="h-10 bg-white/5 flex items-center px-6 gap-2 border-b border-white/5">
+                                <div class="w-2.5 h-2.5 rounded-full bg-red-500/30"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/30"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-green-500/30"></div>
+                            </div>
+                            <div class="absolute inset-0 top-10 flex flex-col items-center justify-center p-12 text-center">
+                                <div class="w-20 h-20 bg-indigo-500/10 rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-code text-3xl text-indigo-500"></i>
+                                </div>
+                                <h4 class="text-2xl font-bold h-premium mb-4 opacity-50 uppercase">Production Server</h4>
+                                <p class="text-[10px] text-gray-600 uppercase tracking-widest font-bold">Establishing Secure Connection...</p>
+                            </div>
+                            <div class="absolute inset-0 bg-indigo-600/0 group-hover:bg-indigo-600/10 transition-colors flex items-center justify-center">
+                                <div class="opacity-0 group-hover:opacity-100 transition-opacity bg-white text-black px-6 py-3 rounded-full font-black text-[10px] uppercase tracking-widest">
+                                    Open New Tab
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Demo Lab -->
+    <section id="demos" class="py-32 px-8 bg-white/[0.02] border-y border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <span class="text-indigo-400 text-[10px] font-black uppercase tracking-[0.4em] mb-4 block">Industry Blueprints</span>
+                <h2 class="h-premium text-5xl md:text-7xl uppercase mb-6">Niche Solutions</h2>
+                <p class="text-gray-400 max-w-xl mx-auto">Select your industry to see how we architect growth for your specific business model.</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4 mb-16 reveal">
+                <button onclick="filterDemo('gym')" class="demo-btn active px-6 py-2 rounded-full border border-white/10 text-[10px] font-bold uppercase tracking-widest transition-all">Fitness</button>
+                <button onclick="filterDemo('restaurant')" class="demo-btn px-6 py-2 rounded-full border border-white/10 text-[10px] font-bold uppercase tracking-widest transition-all">Dining</button>
+                <button onclick="filterDemo('salon')" class="demo-btn px-6 py-2 rounded-full border border-white/10 text-[10px] font-bold uppercase tracking-widest transition-all">Beauty</button>
+                <button onclick="filterDemo('coaching')" class="demo-btn px-6 py-2 rounded-full border border-white/10 text-[10px] font-bold uppercase tracking-widest transition-all">Education</button>
+                <button onclick="filterDemo('cafe')" class="demo-btn px-6 py-2 rounded-full border border-white/10 text-[10px] font-bold uppercase tracking-widest transition-all">Cafes</button>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-16 items-center reveal">
+                <div class="glass-card p-3 rounded-[32px] border-indigo-500/20 shadow-2xl">
+                    <div class="bg-[#030014] rounded-[24px] overflow-hidden border border-white/5 h-[450px] relative">
+                        <div class="h-8 bg-white/5 flex items-center px-4 gap-2 border-b border-white/5">
+                            <div class="w-2 h-2 rounded-full bg-red-500/50"></div>
+                            <div class="w-2 h-2 rounded-full bg-yellow-500/50"></div>
+                            <div class="w-2 h-2 rounded-full bg-green-500/50"></div>
+                        </div>
+                        <div id="demo-viewport" class="p-8 h-full transition-all duration-500 overflow-y-auto">
+                            <div class="animate-pulse">
+                                <div class="h-4 w-20 bg-indigo-500/20 rounded mb-4"></div>
+                                <div class="h-10 w-64 bg-white/10 rounded mb-8"></div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="h-32 bg-white/5 rounded-2xl"></div>
+                                    <div class="h-32 bg-white/5 rounded-2xl"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="demo-content" class="space-y-8">
+                    <h3 id="demo-title" class="text-4xl font-bold h-premium uppercase">IronFit Blueprint</h3>
+                    <p id="demo-desc" class="text-gray-400 text-lg leading-relaxed">High-energy dark mode aesthetics combined with membership management and trainer profiles.</p>
+                    <ul id="demo-features" class="space-y-4">
+                        <li class="flex items-center gap-3 text-sm font-semibold text-gray-300"><i class="fa-solid fa-circle-check text-indigo-500"></i> Trainer Schedules</li>
+                        <li class="flex items-center gap-3 text-sm font-semibold text-gray-300"><i class="fa-solid fa-circle-check text-indigo-500"></i> WhatsApp Booking</li>
+                    </ul>
+                    <button onclick="requestDemo()" class="btn-shine px-8 py-4 rounded-xl font-black uppercase text-[10px] tracking-widest">Request Blueprint</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Info -->
+    <section id="services" class="py-32 px-8 bg-white/[0.01]">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+            <div class="reveal glass-card p-12 group">
+                <div class="w-16 h-16 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-500 text-3xl mb-8 group-hover:bg-indigo-500 group-hover:text-white transition-all">
+                    <i class="fa-solid fa-bolt-lightning"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 uppercase h-premium tracking-tight">Performance</h3>
+                <p class="text-gray-400 leading-relaxed">Websites that load in under 1 second. We optimize every kilobyte to ensure your clients never wait.</p>
+            </div>
+            <div class="reveal glass-card p-12 group">
+                <div class="w-16 h-16 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-500 text-3xl mb-8 group-hover:bg-indigo-500 group-hover:text-white transition-all">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 uppercase h-premium tracking-tight">Mobile-First</h3>
+                <p class="text-gray-400 leading-relaxed">80% of Indian users are on mobile. Our designs are architected for thumb-driven interaction.</p>
+            </div>
+            <div class="reveal glass-card p-12 group">
+                <div class="w-16 h-16 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-500 text-3xl mb-8 group-hover:bg-indigo-500 group-hover:text-white transition-all">
+                    <i class="fa-solid fa-comments-dollar"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 uppercase h-premium tracking-tight">Conversion</h3>
+                <p class="text-gray-400 leading-relaxed">We don't just build sites; we build sales funnels. Integrated WhatsApp automation for instant leads.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-32 px-8">
+        <div class="max-w-4xl mx-auto text-center mb-20 reveal">
+            <h2 class="h-premium text-6xl uppercase mb-4 tracking-tighter">Investment</h2>
+            <p class="text-gray-400 uppercase text-xs tracking-widest font-bold">High-end quality &bull; Local rates</p>
+        </div>
+
+        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+            <div class="reveal glass-card p-10">
+                <div class="text-gray-500 font-bold text-xs uppercase mb-4">Standard</div>
+                <div class="text-5xl font-bold mb-8">₹4,999</div>
+                <ul class="space-y-4 text-sm text-gray-400 mb-10">
+                    <li><i class="fa-solid fa-check text-indigo-500 mr-2"></i> Performance Landing</li>
+                    <li><i class="fa-solid fa-check text-indigo-500 mr-2"></i> WhatsApp Lead System</li>
+                </ul>
+                <button onclick="order('Standard')" class="w-full border border-white/10 py-4 rounded-xl hover:bg-white/5 transition font-bold uppercase text-[10px]">Select</button>
+            </div>
+
+            <div class="reveal glass-card p-10 border-indigo-500 shadow-[0_0_50px_rgba(99,102,241,0.2)]">
+                <div class="text-indigo-500 font-bold text-xs uppercase mb-4">Professional</div>
+                <div class="text-5xl font-bold mb-8">₹9,999</div>
+                <ul class="space-y-4 text-sm text-gray-200 mb-10">
+                    <li><i class="fa-solid fa-check text-indigo-500 mr-2"></i> 5 Premium Pages</li>
+                    <li><i class="fa-solid fa-check text-indigo-500 mr-2"></i> Full SEO Optimization</li>
+                </ul>
+                <button onclick="order('Professional')" class="w-full btn-shine py-4 rounded-xl font-black uppercase text-[10px] tracking-widest">Highly Recommended</button>
+            </div>
+
+            <div class="reveal glass-card p-10">
+                <div class="text-gray-500 font-bold text-xs uppercase mb-4">Corporate</div>
+                <div class="text-5xl font-bold mb-8">₹14,999</div>
+                <ul class="space-y-4 text-sm text-gray-400 mb-10">
+                    <li><i class="fa-solid fa-check text-indigo-500 mr-2"></i> Custom Branding</li>
+                    <li><i class="fa-solid fa-check text-indigo-500 mr-2"></i> Social Media Kit</li>
+                </ul>
+                <button onclick="order('Corporate')" class="w-full border border-white/10 py-4 rounded-xl hover:bg-white/5 transition font-bold uppercase text-[10px]">Select</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-32 px-8">
+        <div class="max-w-7xl mx-auto glass-card p-12 md:p-20 grid md:grid-cols-2 gap-20">
+            <div class="reveal">
+                <h2 class="h-premium text-7xl uppercase mb-8 leading-[0.8]">INITIALIZE <br> PROJECT.</h2>
+                <div class="grid grid-cols-2 gap-4 mt-12">
+                    <a href="https://wa.me/910000000000" class="glass-card p-6 flex flex-col items-center justify-center text-green-500 hover:border-green-500">
+                        <i class="fa-brands fa-whatsapp text-4xl mb-2"></i>
+                        <span class="text-[10px] font-black uppercase text-white">WhatsApp</span>
+                    </a>
+                    <a href="https://instagram.com" class="glass-card p-6 flex flex-col items-center justify-center text-pink-500 hover:border-pink-500">
+                        <i class="fa-brands fa-instagram text-4xl mb-2"></i>
+                        <span class="text-[10px] font-black uppercase text-white">Instagram</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="reveal">
+                <form id="contactForm" class="space-y-6">
+                    <input type="text" id="name" placeholder="FULL NAME" required class="w-full bg-white/5 border border-white/10 p-5 rounded-xl outline-none focus:border-indigo-500 transition font-bold text-xs uppercase tracking-widest">
+                    <input type="text" id="business" placeholder="BUSINESS NAME" required class="w-full bg-white/5 border border-white/10 p-5 rounded-xl outline-none focus:border-indigo-500 transition font-bold text-xs uppercase tracking-widest">
+                    <select id="plan" class="w-full bg-white/5 border border-white/10 p-5 rounded-xl outline-none focus:border-indigo-500 transition font-bold text-xs uppercase tracking-widest text-gray-400">
+                        <option value="Standard">Standard - ₹4,999</option>
+                        <option value="Professional">Professional - ₹9,999</option>
+                        <option value="Corporate">Corporate - ₹14,999</option>
+                    </select>
+                    <button type="submit" class="w-full btn-shine py-6 rounded-xl font-black uppercase tracking-widest text-xs">Send Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center text-gray-600 text-[10px] font-bold uppercase tracking-widest">
+        &copy; 2026 WebNova Studio &bull; Designed in Punjab &bull; Domestic & International
+    </footer>
+
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 150) { reveals[i].classList.add("active"); }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.onload = () => { reveal(); filterDemo('gym'); };
+
+        function launchToNewTab(btn) {
+            const btnText = document.getElementById('btn-text');
+            const btnIcon = document.getElementById('btn-icon');
+            const progressBar = document.getElementById('progress-bar');
+            if(btn) {
+                btn.style.pointerEvents = 'none';
+                btnText.innerText = "Authorizing...";
+                btnIcon.className = "fa-solid fa-circle-notch fa-spin";
+                progressBar.style.width = "100%";
+            }
+            setTimeout(() => {
+                window.open("https://portfolio-tau-two-l9t084x014.vercel.app/", "_blank");
+                if(btn) {
+                    btnText.innerText = "Initialize Live Server";
+                    btnIcon.className = "fa-solid fa-arrow-up-right-from-square";
+                    progressBar.style.width = "0%";
+                    btn.style.pointerEvents = 'all';
+                }
+            }, 800);
+        }
+
+        const demoData = {
+            gym: { title: "IronFit Blueprint", desc: "Aggressive dark mode for gyms. Membership focus.", features: ["Schedules", "WA Booking"], accent: "#ef4444" },
+            restaurant: { title: "Royal Dining", desc: "Hunger-triggering layout. Digital menu cards.", features: ["Digital Menu", "Reservations"], accent: "#f59e0b" },
+            salon: { title: "GlowNest Studio", desc: "Elegant aesthetics. Portfolio & appointments.", features: ["Portfolio", "Instant Booking"], accent: "#ec4899" },
+            coaching: { title: "BrightPath Academy", desc: "Clean & professional. Course enrollment focus.", features: ["Result Gallery", "Lead Forms"], accent: "#3b82f6" },
+            cafe: { title: "Coffee Social", desc: "Trendy, cozy vibes. Instagram integration.", features: ["QR Menus", "Social Feed"], accent: "#10b981" }
+        };
+
+        function filterDemo(category) {
+            document.querySelectorAll('.demo-btn').forEach(btn => btn.classList.remove('active'));
+            if(event) event.target.classList.add('active');
+            const data = demoData[category];
+            document.getElementById('demo-title').innerText = data.title;
+            document.getElementById('demo-desc').innerText = data.desc;
+            document.getElementById('demo-features').innerHTML = data.features.map(f => `<li class="flex items-center gap-3 text-sm font-semibold text-gray-300"><i class="fa-solid fa-circle-check" style="color: ${data.accent}"></i> ${f}</li>`).join('');
+            document.getElementById('demo-viewport').innerHTML = `<div class="space-y-6"><div class="h-4 w-20 rounded" style="background: ${data.accent}33"></div><div class="h-12 w-full bg-white/10 rounded-xl"></div><div class="grid grid-cols-2 gap-4"><div class="h-40 bg-white/5 rounded-2xl flex items-center justify-center"><i class="fa-solid fa-image text-white/10 text-4xl"></i></div><div class="h-40 bg-white/5 rounded-2xl flex items-center justify-center"><i class="fa-solid fa-image text-white/10 text-4xl"></i></div></div></div>`;
+        }
+
+        document.getElementById('contactForm').onsubmit = function(e) {
+            e.preventDefault();
+            const text = `Hi Nitin! I'm ${document.getElementById('name').value} from ${document.getElementById('business').value}. I'm interested in ${document.getElementById('plan').value}.`;
+            window.open(`https://wa.me/910000000000?text=${encodeURIComponent(text)}`);
+        };
+
+        function order(tier) { window.open(`https://wa.me/910000000000?text=Hi%20Nitin!%20I%20want%20to%20order%20the%20${tier}%20package.`); }
+    </script>
+</body>
+</html>
